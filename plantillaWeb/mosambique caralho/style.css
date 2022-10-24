@@ -1,0 +1,41 @@
+* {margin: 0px; padding: 0px;} /* margin es el margen exterior. padding, margen interior */
+.primera_caja{
+    background-color: rgb(23, 173, 161);
+    height: 25%;
+}
+.segunda_caja{
+    background-color: red;
+    height: 50%;
+}
+.tercera_caja{
+    background-color: yellow;
+    height: 25%;
+}
+.primera_columna{
+    height: 11%;
+    width:100%;
+    background-color: white;
+
+}
+.segunda_columna{
+    height: 80%;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    color:red;
+}
+
+.triangulo{
+    width: 0;
+    height: 0;
+    border-top: 325px solid transparent;
+    border-bottom: 325px solid transparent;
+    border-left: 400px solid rgb(167, 30, 30);
+    position: absolute;
+}
+
+.contenedor{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
