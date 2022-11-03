@@ -19,9 +19,9 @@
             2=>array(8,1,6)
         );
         $fallos=array();
-        $cuadrado1=new Cuadrado($numeros,3,3,false,$fallos);
+        $dummy=new Cuadrado($numeros,3,3,false,$fallos);
 
-        $cuadrado=$cuadrado1->analizarCuadradoMagico($numeros);
+        $cuadrado=$dummy->analizarCuadradoMagico($numeros);
 
         $cuadrado->pintarCuadradoMagico($cuadrado);
         
