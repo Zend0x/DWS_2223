@@ -1,14 +1,24 @@
-* {margin: 0px; padding: 0px;} /* margin es el margen exterior. padding, margen interior */
+* {margin: 0px; padding: 0px; background-color: blue;} /* margin es el margen exterior. padding, margen interior */
 .primera_caja{
-    background-color: orangered;
+    background-color: yellow;
     height: 10%;
 }
+#boton_inicio{
+    margin-left: 50%;
+}
+#boton_inicio:visited{
+    color: blue;
+}
+#boton_inicio:hover{
+    color: purple;
+    text-shadow: 2px 2px red;
+}
 .segunda_caja{
-    background-color: black;
+    background-color: darkgoldenrod;
     height: 80%;
 }
 .tercera_caja{
-    background-color: orangered;
+    background-color: yellow;
     height: 10%;
 }
 .primera_columna{
@@ -24,19 +34,42 @@
 }
 
 .pelicula{
-    float: left;
     height: 30%;
     width: 100%;
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.336);
     white-space: normal;
+    border-radius: 10px;
+    margin-bottom: 1%;
+    float: left;
 }
+
 .poster{
+    float:left;
+    width: 15%;
+    height: 90%;
+    margin:1% 0% 1% 1%;
+}
+.poster img{
     width: 100%;
     height: 100%;
+    border-radius: 10px;
+    box-shadow: 5px 5px rgb(87, 87, 87);
 }
 .texto{
-    color:red;
+    width: calc(78%);
+    height: calc(90%);
+
     text-align: left;
+    overflow: auto;
+
+    color: rgb(255, 65, 17);
+    text-shadow: 2px 3px rgb(97, 44, 1);
+    font-size: x-large;
+
+    margin-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    float: left;
 }
 
 .contenedor{
