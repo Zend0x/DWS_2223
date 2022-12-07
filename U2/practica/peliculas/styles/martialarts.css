@@ -33,6 +33,12 @@
     text-align: center;
 }
 
+.tercera_columna{
+    float:left;
+    height: 100%;
+    width: 25%;
+}
+
 .pelicula{
     height: 30%;
     width: 100%;

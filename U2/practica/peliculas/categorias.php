@@ -19,8 +19,9 @@
             <div class="segunda_columna">
                 <h1>Selecciona una categoría</h1>
                 <?php
-                    class Categorias{
-                        public function __construct($nombre,$imagen,$descripcion){
+                    class Categoria{
+                        public function __construct($id,$nombre,$imagen,$descripcion){
+                            $this->id=$id;
                             $this->nombre=$nombre;
                             $this->imagen=$imagen;
                             $this->descripcion=$descripcion;
@@ -44,12 +45,22 @@
                             return $this->descripcion;
                         }
 
-                        
+                        function mostrarCarteleras($categoria){
+                            $nombreCategoria=$categoria->getNombre();
+                            $imagenCategoria=$categoria->getImagen();
+                            echo '<div class="cuadrado">';
+                            echo '<a href="peliculas.php?categoria='.$nombreCategoria.'" class="icono">';
+                            echo '<img src="img/'.$imagenCategoria.'"> <alt="'.$nombreCategoria.'">';
+                            echo '</a>';
+                            echo '<p>'.$nombreCategoria.'</p>';
+                            echo '</div>';
+                        }
                     }
                 ?>
+                <!--
                 <div class="cuadrado">
                     <a href="peliculas.php?categoria=terror" class="icono">
-                        <img src="img/screamIcon.png" alt="scream">
+                        <img src="img/terror.png" alt="terror">
                     </a>
                     <p>Terror</p>
                 </div>
@@ -60,7 +71,19 @@
                     </a>
                     <p>Artes Marciales</p>
                 </div>
-
+                -->
+                <?php
+                    $dummy=new Categoria(0,0,0,0,0);
+                    $categoria1=new Categoria(1,"Terror","terror.png","Peliculas de miedo.");
+                    $categoria2=new Categoria(2,"Artes Marciales","bruceLee_silouette.webp","Peliculas de peleas.");
+                    $categoria3=new Categoria(3,"Peleas 2","bruceLee_silouette.webp","Peleas pero 2");
+                    $categorias=[
+                        $categoria1,$categoria2
+                    ];
+                    for($i=0;$i<count($categorias);$i++){
+                        $dummy->mostrarCarteleras($categorias[$i]);
+                    }
+                ?>
             </div>
 
         </div>

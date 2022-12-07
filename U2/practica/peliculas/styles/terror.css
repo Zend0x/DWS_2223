@@ -17,10 +17,6 @@
     background-color: black;
     height: 80%;
 }
-.tercera_caja{
-    background-color: orangered;
-    height: 10%;
-}
 .primera_columna{
     float:left;
     height: 100%;
@@ -32,6 +28,11 @@
     width:50%;
     text-align: center;
     color: white;
+}
+.tercera_columna{
+    float:left;
+    height: 100%;
+    width: 25%;
 }
 
 .pelicula{
@@ -87,4 +88,12 @@
     background-color: black;
     height: 100%;
     width: 100%;
+}
+
+.footer{
+    width: 100%;
+    background-color: red;
+    height: 10%;
+    left: 0;
+    bottom: 0;
 }
