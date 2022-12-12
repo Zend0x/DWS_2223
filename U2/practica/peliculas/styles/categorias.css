@@ -1,0 +1,82 @@
+* {margin: 0px; padding: 0px;} /* margin es el margen exterior. padding, margen interior */
+.primera_caja{
+    background-color: orangered;
+    height: 10%;
+}
+.segunda_caja{
+    background-color:darkgray;
+    background-size: cover;
+    height: 80%;
+}
+.tercera_caja{
+    background-color: yellow;
+    height: 10%;
+}
+
+.tercera_caja p{
+    margin-top:70px;
+    margin-right: 10px;
+    float: right;
+}
+
+.primera_columna{
+    float:left;
+    height: 100%;
+    width:25%;
+}
+
+.segunda_columna{
+    float:left;
+    height: 100%;
+    width:50%;
+    text-align: center;
+    color:white;
+}
+
+.segunda_columna h1{
+    color: red;
+}
+
+.cuadrado{
+    background-color: white;
+    width: 10%;
+    height: 13%;
+    border-radius: 50px;
+    margin-left: 27%;
+    margin-top: 15%;
+    float: left;
+}
+
+.cuadrado img{
+    margin-top: 1%;
+    width: 95%;
+    height: 95%;
+    border-radius: 35px;
+}
+
+.nombreCategoria{
+    margin-top: 5%;
+}
+
+#izquierdo{
+    float: left;
+    margin-top: 15%;
+    margin-left: 10%;
+}
+
+#derecho{
+    float: right;
+    margin-top: 15%;
+    margin-right: 10%;
+}
+
+.icono{
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}

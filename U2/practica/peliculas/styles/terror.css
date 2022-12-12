@@ -1,4 +1,4 @@
-* {margin: 0px; padding: 0px; background-color: black;} /* margin es el margen exterior. padding, margen interior */
+* {margin: 0px; padding: 0px;} /* margin es el margen exterior. padding, margen interior */
 .primera_caja{
     background-color: rgb(255, 145, 0);
     height: 10%;
@@ -36,52 +36,66 @@
 }
 
 .pelicula{
-    height: 35%;
+    height: 30%;
     width: 100%;
-    background-color: rgba(0, 0, 255, 0.397);
+    background-color: rgba(0, 0, 255, 0.336);
     white-space: normal;
     border-radius: 10px;
-    margin-bottom: 2%;
-}
-
-.titulo_pelicula{
+    margin-bottom: 1%;
     float: left;
-    margin-left: 1%;
-    height:5%;
 }
 
-.votos{
-    float: right;
-    margin-right: 1%;
+.titulo{
+    text-align: left;
+    margin-left: 1%;
+    font-size: 150%;
+    color: rgb(255, 65, 17);
+    text-shadow: 2px 2px rgb(97, 44, 1);
 }
 
 .poster{
     float:left;
-    width: 17%;
-    height: 80%;
-    margin:1% 0% 1% 1%;
+    width: 12%;
+    height: 73%;
+    margin-left: 1%;
+    margin-top: 1%;
 }
 .poster img{
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    box-shadow: 3px 5px rgb(0, 0, 0);
+    box-shadow: 3px 2px rgb(87, 87, 87);
+}
+.duracion{
+    font-size: larger;
+    color: rgb(255, 65, 17);
+    text-shadow: 2px 2px rgb(97, 44, 1);
 }
 .texto{
-    width: calc(78%);
-    height: calc(80%);
+    width: 78%;
+    height: 70%;
 
     text-align: left;
-    overflow: auto;
 
     color: rgb(255, 65, 17);
-    text-shadow: 2px 3px rgb(97, 44, 1);
+    text-shadow: 2px 2px rgb(97, 44, 1);
     font-size: x-large;
 
     margin-top: 1%;
     padding-left: 1%;
     padding-right: 1%;
     float: left;
+
+    
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+
+
+.enlaceFicha{
+    width: 95%;
+    height: 10%;
+    text-align: right;
 }
 
 .contenedor{
@@ -96,4 +110,9 @@
     height: 10%;
     left: 0;
     bottom: 0;
+}
+
+a:link,a:visited{
+    color: red;
+    text-shadow: 1px 1px purple;
 }

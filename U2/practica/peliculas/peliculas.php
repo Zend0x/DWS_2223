@@ -23,7 +23,7 @@
     <?php
     class Pelicula
     {
-        public function __construct($id, $titulo, $imagen, $categoria, $duracion, $descripcion)
+        public function __construct($id, $titulo, $imagen, $categoria, $duracion, $descripcion,$votos)
         {
             $this->id = $id;
             $this->titulo = $titulo;
@@ -31,6 +31,7 @@
             $this->categoria = $categoria;
             $this->duracion = $duracion;
             $this->descripcion = $descripcion;
+            $this->votos=$votos;
         }
         public function getId()
         {
@@ -44,6 +45,9 @@
         {
             return $this->categoria;
         }
+        public function getDuracion(){
+            return $this->duracion;
+        }
         public function getImagen()
         {
             return $this->imagen;
@@ -52,21 +56,32 @@
         {
             return $this->descripcion;
         }
+        public function getVotos(){
+            return $this->votos;
+        }
 
         //Query para sacar las películas
         function sacarPeliculas(){
             $login=mysqli_connect('localhost','root','12345');
             mysqli_select_db($login,'carteleraPeliculas');
 
-            $query="SELECT * FROM peliculas";
+            $categoriaSeleccionada = strtolower($_GET['categoria']);
+
+            $query="SELECT peliculas.id,peliculas.titulo,peliculas.imagen,peliculas.categoria,peliculas.duracion,peliculas.descripcion,peliculas.votos
+            FROM peliculas 
+            INNER JOIN categorias ON peliculas.categoria=categorias.id
+            WHERE categorias.nombre='".$categoriaSeleccionada."'
+            ORDER BY peliculas.votos DESC;";
 
             $outputQuery=mysqli_query($login,$query);
+
+            $arrayPeliculas=array();
 
             if(!$outputQuery){
                 $mensaje='Consulta inválida.'.mysqli_error($login);
                 die($mensaje);
             }else{
-                echo 'Conectado.'."<br>";
+                //echo 'Conectado.'."<br>";
                 while($datos=mysqli_fetch_assoc($outputQuery)){
 
                     $id=$datos['id'];
@@ -75,10 +90,9 @@
                     $categoria=$datos['categoria'];
                     $duracion=$datos['duracion'];
                     $descripcion=$datos['descripcion'];
+                    $votos=$datos['votos'];
 
-                    $pelicula=new Pelicula($id, $titulo, $imagen, $categoria, $duracion, $descripcion);
-
-                    $arrayPeliculas=array();
+                    $pelicula=new Pelicula($id, $titulo, $imagen, $categoria, $duracion, $descripcion,$votos);
                     array_push($arrayPeliculas,$pelicula);
                 }
                 return $arrayPeliculas;
@@ -88,12 +102,17 @@
         function pintarPeliculas($pelicula)
         {
             echo '<div class="pelicula">';
+            echo '<p class="titulo">'.$pelicula->getTitulo().'</p>';
             echo '<div class="poster">';
             echo '<img src="img/' . $pelicula->getImagen() . '"> <alt="' . $pelicula->getImagen() . '">';
+            echo '<p class="duracion">Duración: '.$pelicula->getDuracion().'</p>';
             echo '</div>';
             echo '<div class="texto">';
             echo '<p>' . $pelicula->getDescripcion() . '</p>';
             echo '</div>';
+            echo '<a href="ficha.php?id_pelicula="'.$pelicula->getId().'>';
+            echo '<p class="enlaceFicha">Ver ficha</p>';
+            echo '</a>';
             echo '</div>';
         }
     }
@@ -113,7 +132,7 @@
                     ini_set('html_errors', 1);
 
                     echo '<h1> Peliculas de ' . $categoriaSeleccionada . '</h1>';
-                    $dummy = new Pelicula(0, 0, 0, 0, 0, 0);
+                    $dummy = new Pelicula(0, 0, 0, 0, 0, 0,0);
 
                     $peliculaNueva = $dummy->sacarPeliculas();
 
