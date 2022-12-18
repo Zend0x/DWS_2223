@@ -1,0 +1,64 @@
+* {margin: 0px; padding: 0px;} /* margin es el margen exterior. padding, margen interior */
+.primera_caja{
+    height: 25%;
+}
+.segunda_caja{
+    height: 50%;
+}
+.tercera_caja{
+    height: 25%;
+}
+.primera_columna{
+    float:left;
+    height: 100%;
+    width:33.3%;
+    background-color: green;
+    
+
+}
+.segunda_columna{
+    float:left;
+    height: 100%;
+    width:33.3%;
+    background-color: white;
+}
+
+.segunda_columna p{
+    margin-top: 5%;
+}
+
+#votado{
+    margin-right: 1%;
+    color: greenyellow;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.contenedor{
+    background-image: url('../img/mitad_mitad.jpg');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.botonBonito {
+    color: rgb(255, 65, 17);
+    text-shadow: 1px 1px rgb(185, 74, 0);
+    background-color: rgb(211, 196, 60);
+    border: 1px solid orangered;
+
+    margin-top: 10%;
+    margin-left: 46.5%;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 40px;
+}
+
+.botonBonito:hover{
+    color: rgb(211, 196, 60);
+    background-color: rgb(255, 65, 17);
+    border:1px solid rgb(211,196,60);
+}

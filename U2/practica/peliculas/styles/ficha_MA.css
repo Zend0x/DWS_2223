@@ -1,0 +1,133 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.cajaUno{
+    height: 10%;
+    width: 100%;
+    background-color: rgb(221, 152, 2);
+    text-align: center;
+}
+
+.botonBonito {
+    color: rgb(255, 65, 17);
+    text-shadow: 1px 1px rgb(185, 74, 0);
+
+    margin-top: 0.3%;
+    background-color: rgb(221, 206, 0);
+    border: 1px solid orangered;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.botonBonito:hover{
+    background-color: rgb(190, 178, 1);
+}
+
+#boton_inicio{
+    background-color: red;
+}
+
+#boton_peliculas{
+    background-color: green;
+}
+
+.cajaDos{
+    width: 100%;
+    height: 80%;
+    background-image: url('../img/shanfengTemple.jpg');
+}
+
+.columnaIzquierda{
+    height: 50%;
+    float:left;
+    width: 10%;
+}
+
+.columnaCentral{
+    float: left;
+    width:80%;
+}
+
+.ficha{
+    margin-top: 4%;
+    float: left;
+    width: 100%;
+    height: 80%;
+    background-color: rgba(221, 133, 2, 0.644);
+    border-radius: 20px;
+}
+
+.poster{
+    float:left;
+    width: 25%;
+    height: 90%;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+.poster img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 3px 2px rgb(87, 87, 87);
+}
+
+.votar{
+    text-align: center;
+    float: left;
+    height: 3%;
+    width: 5%;
+    margin-left: 60%;
+    margin-top: 0.3%;
+    border-radius: 20px;
+}
+
+#botonVotar{
+    color: rgb(255, 65, 17);
+    text-shadow: 1px 1px rgb(185, 74, 0);
+
+    margin-left: 5%;
+    background-color: rgb(221, 206, 0);
+    border: 1px solid orangered;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+#botonVotar:hover{
+    background-color: rgb(190, 178, 1);
+}
+
+.datos{
+    float: right;
+    width: 65%;
+    height: 90%;
+    margin-top: 0.5%;
+    margin-right: 2%;
+    background-color: rgba(0, 0, 0, 0.651);
+    border-radius: 15px;
+    overflow:auto;
+}
+
+#titulo,#anno,#duracion,#directores,#reparto,#sinopsis,#votos{
+    font-family: 'Kaushan Script', cursive;
+    font-size: larger;
+    margin: 1% 1%1% 1%;
+    color: rgb(224, 120, 1);
+}
+
+.cajaTres{
+    width: 100%;
+    height: 10%;
+    background-color: rgb(221, 152, 2);
+}

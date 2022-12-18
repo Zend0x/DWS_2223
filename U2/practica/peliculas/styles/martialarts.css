@@ -1,25 +1,40 @@
 * {margin: 0px; padding: 0px;} /* margin es el margen exterior. padding, margen interior */
 .primera_caja{
-    background-color: yellow;
-    height: 10%;
+    background-color: rgba(221, 152, 2, 0.781);
+    height: 12%;
 }
-#boton_inicio{
+
+.botonBonito {
+    color: rgb(255, 65, 17);
+    text-shadow: 1px 1px rgb(185, 74, 0);
+
+    margin-top: 0.5%;
     margin-left: 50%;
+    background-color: rgb(211, 196, 60);
+    border: 1px solid orangered;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 16px;
 }
-#boton_inicio:visited{
-    color: blue;
+
+.botonBonito:hover{
+    color: rgb(211, 196, 60);
+    background-color: rgb(255, 65, 17);
+    border:1px solid rgb(211,196,60);
 }
-#boton_inicio:hover{
-    color: purple;
-    text-shadow: 2px 2px red;
-}
+
 .segunda_caja{
-    background-color: darkgoldenrod;
-    height: 80%;
+    padding-top: 0.5%;
+    
+    height: 83%;
+    overflow: auto;
 }
 .tercera_caja{
-    background-color: yellow;
-    height: 10%;
+    background-color: rgba(221, 152, 2, 0.781);
+    height: 4%;
 }
 .primera_columna{
     float:left;
@@ -42,22 +57,29 @@
 .pelicula{
     height: 30%;
     width: 100%;
-    background-color: rgba(0, 0, 255, 0.336);
+    background-color: rgba(0, 0, 0, 0.541);
     white-space: normal;
     border-radius: 10px;
     margin-bottom: 1%;
     float: left;
 }
 
-.textiArriba{
-    display: inline;
-}
-
 .titulo{
     text-align: left;
     margin-left: 1%;
-    font-size: 150%;
+    font-size: 130%;
     width: 30%;
+    color: rgb(255, 65, 17);
+    text-shadow: 2px 2px rgb(97, 44, 1);
+}
+
+.votos{
+    float: right;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    width: 6%;
+    height: 5%;
+
     color: rgb(255, 65, 17);
     text-shadow: 2px 2px rgb(97, 44, 1);
 }
@@ -65,7 +87,7 @@
 .poster{
     float:left;
     width: 12%;
-    height: 73%;
+    height: 70%;
     margin-left: 1%;
     margin-top: 1%;
 }
@@ -76,7 +98,8 @@
     box-shadow: 3px 2px rgb(87, 87, 87);
 }
 .duracion{
-    font-size: larger;
+    margin-top: 5%;
+    font-size: medium;
     color: rgb(255, 65, 17);
     text-shadow: 2px 2px rgb(97, 44, 1);
 }
@@ -88,7 +111,7 @@
 
     color: rgb(255, 65, 17);
     text-shadow: 2px 2px rgb(97, 44, 1);
-    font-size: x-large;
+    font-size: xx-large;
 
     margin-top: 1%;
     padding-left: 1%;
@@ -99,6 +122,14 @@
     overflow:hidden;
 }
 
+#catPelis{
+    text-align: center;
+    margin-top: 1%;
+    font-family: 'Kaushan Script', cursive;
+    color: rgb(197, 1, 1);
+    text-shadow: 2px 2px rgb(112, 11, 11);
+}
+
 .enlaceFicha{
     width: 95%;
     text-align: right;
@@ -106,12 +137,16 @@
 }
 
 .contenedor{
-    background-color: black;
     height: 100%;
     width: 100%;
+    display: inline;
+    position: absolute;
+    background-image: url('../img/shanfengTemple.jpg');
 }
 
-a:link,a:visited{
-    color: gold;
-    text-shadow: 1px 1px red;
+.titulo,.votos,.duracion,.texto,#catPelis,.enlaceFicha,.enlaceFicha:visited{
+    font-family: 'Kaushan Script', cursive;
+    text-decoration: none;
+    color: rgb(255, 65, 17);
+    text-shadow: 2px 2px rgb(97, 44, 1);
 }

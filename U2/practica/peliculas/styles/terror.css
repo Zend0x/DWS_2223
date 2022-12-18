@@ -1,22 +1,44 @@
 * {margin: 0px; padding: 0px;} /* margin es el margen exterior. padding, margen interior */
 .primera_caja{
-    background-color: rgb(255, 145, 0);
-    height: 10%;
+    background-image: linear-gradient(90deg,#011f29,#082e39,#011f29);
+    height: 15%;
 }
-#boton_inicio{
+
+.botonBonito {
+    color: rgb(239, 255, 17);
+    text-shadow: 1px 1px rgb(185, 74, 0);
+
+    margin-top: 0.5%;
     margin-left: 50%;
+    background-color: #0e4f61;
+    border: 1px solid #000000;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 16px;
 }
-#boton_inicio:visited{
-    color: blue;
+
+.botonBonito:hover{
+    color: #0e4f61;
+    background-color: rgb(191, 204, 12);
 }
-#boton_inicio:hover{
-    color: purple;
-    text-shadow: 2px 2px red;
-}
+
 .segunda_caja{
-    background-color: black;
+    padding-top: 0.5%;
+    background-image: url('../img/haunted_house.jpg');
+    background-size: cover;
     height: 80%;
+    overflow: scroll;
+    overflow-x:hidden;
 }
+
+.tercera_caja{
+    background-image: linear-gradient(90deg,#011f29,#082e39,#011f29);
+    height: 4%;
+}
+
 .primera_columna{
     float:left;
     height: 100%;
@@ -38,7 +60,8 @@
 .pelicula{
     height: 30%;
     width: 100%;
-    background-color: rgba(0, 0, 255, 0.336);
+    
+    background-color: #013a4d;
     white-space: normal;
     border-radius: 10px;
     margin-bottom: 1%;
@@ -49,14 +72,21 @@
     text-align: left;
     margin-left: 1%;
     font-size: 150%;
-    color: rgb(255, 65, 17);
-    text-shadow: 2px 2px rgb(97, 44, 1);
+}
+
+
+.votos{
+    float: right;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    width: 6%;
+    height: 5%;
 }
 
 .poster{
     float:left;
     width: 12%;
-    height: 73%;
+    height: 70%;
     margin-left: 1%;
     margin-top: 1%;
 }
@@ -64,22 +94,18 @@
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    box-shadow: 3px 2px rgb(87, 87, 87);
+    box-shadow: 2px 2px rgb(73, 94, 1);
 }
 .duracion{
-    font-size: larger;
-    color: rgb(255, 65, 17);
-    text-shadow: 2px 2px rgb(97, 44, 1);
+    margin-top: 5%;
+    font-size: large;
 }
 .texto{
     width: 78%;
     height: 70%;
 
     text-align: left;
-
-    color: rgb(255, 65, 17);
-    text-shadow: 2px 2px rgb(97, 44, 1);
-    font-size: x-large;
+    font-size: xx-large;
 
     margin-top: 1%;
     padding-left: 1%;
@@ -91,6 +117,13 @@
     overflow:hidden;
 }
 
+#catPelis{
+    text-align: center;
+    margin-top: 0.5%;
+    font-size: 3rem;
+    font-family: 'Hanalei Fill', cursive;
+    -webkit-text-stroke: 1px greenyellow;
+}
 
 .enlaceFicha{
     width: 95%;
@@ -112,7 +145,9 @@
     bottom: 0;
 }
 
-a:link,a:visited{
-    color: red;
-    text-shadow: 1px 1px purple;
+.titulo,.votos,.duracion,.texto,.enlaceFicha,.enlaceFicha:visited{
+    font-family: 'New Rocker', cursive;
+    text-decoration: none;
+    color: rgb(163, 163, 4);
+    text-shadow: 2px 2px rgb(105, 105, 3);
 }

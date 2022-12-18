@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>Cartelera del cine</title>
     <link rel="stylesheet" href="styles/categorias.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanalei+Fill&family=Kaushan+Script&family=New+Rocker&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="contenedor">
@@ -17,7 +18,6 @@
             </div>
 
             <div class="segunda_columna">
-                <h1>Selecciona una categoría</h1>
                 <?php
                     class Categoria{
                         public function __construct($id,$nombre,$imagen,$descripcion){
@@ -39,9 +39,13 @@
 
                         function sacarCategorias(){
                             $login=mysqli_connect('localhost','root','12345');
+                            if(mysqli_connect_errno()){
+                                echo "Error al acceder a la base de datos.".mysqli_connect_error();
+                            }
+                            $dummy=new Categoria(0,0,0,0);
                             mysqli_select_db($login,'carteleraPeliculas');
                 
-                            $query="SELECT * FROM categorias;";
+                            $query="SELECT categorias.id,categorias.nombre,categorias.imagen,categorias.descripcion FROM categorias;";
                 
                             $outputQuery=mysqli_query($login,$query);
                 
@@ -51,18 +55,23 @@
                                 $mensaje='Consulta inválida.'.mysqli_error($login);
                                 die($mensaje);
                             }else{
-                                //echo 'Conectado.'."<br>";
-                                while($datos=mysqli_fetch_assoc($outputQuery)){
+                                if(($outputQuery->num_rows)>0){
+                                    
+                                    echo '<h1 class="seleccionaUna">Selecciona una categoría</h1>';
+                                    while($datos=mysqli_fetch_assoc($outputQuery)){
                 
-                                    $id=$datos['id'];
-                                    $nombre=$datos['nombre'];
-                                    $imagen=$datos['imagen'];
-                                    $descripcion=$datos['descripcion'];
-                
-                                    $categoria=new Categoria($id, $nombre,$imagen, $descripcion);
-                                    array_push($arrayCategorias,$categoria);
+                                        $id=$datos['id'];
+                                        $nombre=$datos['nombre'];
+                                        $imagen=$datos['imagen'];
+                                        $descripcion=$datos['descripcion'];
+                    
+                                        $categoria=new Categoria($id, $nombre,$imagen, $descripcion);
+                                        array_push($arrayCategorias,$categoria);
+                                    }
+                                    $dummy->pintarCategorias($arrayCategorias);
+                                }else{
+                                    echo '<h1 id="mensajeError">No ha habido resultados.</h1>';
                                 }
-                                return $arrayCategorias;
                             }
                         }
 
@@ -72,7 +81,7 @@
                             $imagenCategoria=$categoria->getImagen();
 
                             echo '<div class="cuadrado">';
-                            echo '<a href="peliculas.php?categoria='.$nombreCategoria.'" class="icono">';
+                            echo '<a href="peliculas.php?categoria='.$nombreCategoria.'" class="icono"">';
                             echo '<img src="img/'.$imagenCategoria.'"> <alt="'.$nombreCategoria.'">';
                             echo '</a>';
                             echo '<p class="nombreCategoria">'.$nombreCategoria.'</p>';
@@ -86,29 +95,9 @@
                             }
                         }
                     }
-                ?>
-                <!--
-                <div class="cuadrado">
-                    <a href="peliculas.php?categoria=terror" class="icono">
-                        <img src="img/terror.png" alt="terror">
-                    </a>
-                    <p>Terror</p>
-                </div>
-
-                <div class="cuadrado">
-                    <a href="peliculas.php?categoria=pelea" class="icono">
-                        <img src="img/bruceLee_silouette.webp" alt="bruceLee">
-                    </a>
-                    <p>Artes Marciales</p>
-                </div>
-                -->
-                <?php
+                    
                     $dummy=new Categoria(0,0,0,0,0);
-                    $categoria1=new Categoria(1,"Terror","terror_icon.png","Peliculas de miedo.");
-                    $categoria2=new Categoria(2,"Artes Marciales","martialArts_icon.webp","Peliculas de peleas.");
-                    $categoria3=new Categoria(3,"Peleas 2","bruceLee_silouette.webp","Peleas pero 2");
                     $arrayCat = $dummy->sacarCategorias();
-                    $dummy->pintarCategorias($arrayCat);
                 ?>
             </div>
 

@@ -1,0 +1,113 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.cajaUno{
+    height: 10%;
+    width: 100%;
+    background-image: linear-gradient(90deg,#011f29,#082e39,#011f29);
+    text-align: center;
+}
+
+.botonBonito {
+    color: rgb(239, 255, 17);
+    text-shadow: 1px 1px rgb(185, 74, 0);
+
+    margin-top: 0.5%;
+    margin-left: 5%;
+    background-color: #0e4f61;
+    border: 1px solid #000000;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.cajaDos{
+    width: 100%;
+    height: 90%;
+    background-image: url('../img/haunted_house.jpg');
+    background-size: cover;
+}
+
+.columnaIzquierda{
+    height: 50%;
+    float:left;
+    width: 10%;
+}
+
+.columnaCentral{
+    float: left;
+    width:80%;
+}
+
+.ficha{
+    margin-top: 4%;
+    float: left;
+    width: 100%;
+    height: 70%;
+    background-color: #013a4d;
+    border-radius: 20px;
+}
+
+.poster{
+    float:left;
+    width: 25%;
+    height: 90%;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+.poster img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 3px 2px rgb(87, 87, 87);
+}
+
+.votar{
+    text-align: center;
+    float: left;
+    height: 3%;
+    width: 5%;
+    margin-left: 60%;
+    margin-top: 0.3%;
+    border-radius: 20px;
+}
+
+#botonVotar{
+    color: rgb(239, 255, 17);
+    text-shadow: 1px 1px rgb(185, 74, 0);
+
+    margin-left: 5%;
+    background-color: #0e4f61;
+    border: 1px solid #000000;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+.datos{
+    float: right;
+    width: 65%;
+    height: 90%;
+    margin-top: 0.5%;
+    margin-right: 2%;
+    background-color: rgba(0, 0, 0, 0.651);
+    border-radius: 15px;
+    overflow:auto;
+}
+
+#titulo,#anno,#duracion,#directores,#reparto,#sinopsis,#votos{
+    font-size: x-large;
+    margin: 1% 1%1% 1%;
+    color: yellow;
+    font-family: 'New Rocker', cursive;
+}
