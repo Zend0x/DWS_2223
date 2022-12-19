@@ -6,17 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanalei+Fill&family=Kaushan+Script&family=New+Rocker&display=swap" rel="stylesheet">
     <?php
-    $categoriaSeleccionada = strtoupper($_GET['categoria']);
 
-    switch ($categoriaSeleccionada) {
-        case 'TERROR':
-            echo '<link rel="stylesheet" href="styles/terror.css">';
-            echo '<link rel="shortcut icon" href="img/favicon_terror.ico" type="image/x-icon">';
-            break;
-        case 'ARTES MARCIALES':
-            echo '<link rel="stylesheet" href="styles/martialarts.css">';
-            echo '<link rel="shortcut icon" href="img/favicon_MA.ico" type="image/x-icon">';
-            break;
+    if(isset($_GET['categoria'])){
+        $categoriaSeleccionada = strtoupper($_GET['categoria']);
+
+        switch ($categoriaSeleccionada) {
+            case 'TERROR':
+                echo '<link rel="stylesheet" href="styles/terror.css">';
+                echo '<link rel="shortcut icon" href="img/favicon_terror.ico" type="image/x-icon">';
+                break;
+            case 'ARTES MARCIALES':
+                echo '<link rel="stylesheet" href="styles/martialarts.css">';
+                echo '<link rel="shortcut icon" href="img/favicon_MA.ico" type="image/x-icon">';
+                break;
+        }
+    }else{
+        echo '<link rel="stylesheet" href="styles/error.css">'; 
     }
     ?>
     <title>Películas</title>
@@ -68,53 +73,55 @@
             $login=mysqli_connect('localhost','root','12345');
             mysqli_select_db($login,'carteleraPeliculas');
 
+            if(isset($_GET['categoria'])){
             $categoriaSeleccionada=strtolower($_GET['categoria']);
             $san_categoriaSeleccionada=mysqli_real_escape_string($login,$categoriaSeleccionada);
-
-            if(isset($_POST['ordenar'])){
-                $orden=mysqli_real_escape_string($login,$_POST['orden']);
-
-                $query="SELECT peliculas.id,peliculas.titulo,peliculas.imagen,peliculas.categoria,peliculas.duracion,peliculas.descripcion,peliculas.votos
-                FROM peliculas 
-                INNER JOIN categorias ON peliculas.categoria=categorias.id
-                WHERE categorias.nombre='".$san_categoriaSeleccionada."'".$orden.";";
-            }else{
-                $query="SELECT peliculas.id,peliculas.titulo,peliculas.imagen,peliculas.categoria,peliculas.duracion,peliculas.descripcion,peliculas.votos
-                FROM peliculas 
-                INNER JOIN categorias ON peliculas.categoria=categorias.id
-                WHERE categorias.nombre='".$san_categoriaSeleccionada."';";
-            }
-
-            
-
-            $outputQuery=mysqli_query($login,$query);
-
-            $arrayPeliculas=array();
-
-            if(!$outputQuery){
-                $mensaje='Consulta inválida.'.mysqli_error($login);
-                $mensaje='Query realizada: '.$query;
-                die($mensaje);
-            }else{
-                if(($outputQuery->num_rows)>0){
-                    while($datos=mysqli_fetch_assoc($outputQuery)){
-
-                        $id=$datos['id'];
-                        $titulo=$datos['titulo'];
-                        $imagen=$datos['imagen'];
-                        $categoria=$datos['categoria'];
-                        $duracion=$datos['duracion'];
-                        $descripcion=$datos['descripcion'];
-                        $votos=$datos['votos'];
-
-                        $pelicula=new Pelicula($id, $titulo, $imagen, $categoria, $duracion, $descripcion,$votos);
-                        array_push($arrayPeliculas,$pelicula);
-                    }
-                    return $arrayPeliculas;
+                if(isset($_POST['ordenar'])){
+                    $orden=mysqli_real_escape_string($login,$_POST['orden']);
+                    $query="SELECT peliculas.id,peliculas.titulo,peliculas.imagen,peliculas.categoria,peliculas.duracion,peliculas.descripcion,peliculas.votos
+                    FROM peliculas 
+                    INNER JOIN categorias ON peliculas.categoria=categorias.id
+                    WHERE categorias.nombre='".$san_categoriaSeleccionada."'".$orden.";";
                 }else{
-                    echo '<h1 class="mensajeError">No hay películas que mostrar.</h1>';
+                    $query="SELECT peliculas.id,peliculas.titulo,peliculas.imagen,peliculas.categoria,peliculas.duracion,peliculas.descripcion,peliculas.votos
+                    FROM peliculas 
+                    INNER JOIN categorias ON peliculas.categoria=categorias.id
+                    WHERE categorias.nombre='".$san_categoriaSeleccionada."';";
                 }
+                $outputQuery=mysqli_query($login,$query);
+
+                $arrayPeliculas=array();
+
+                if(!$outputQuery){
+                    $mensaje='Consulta inválida.'.mysqli_error($login);
+                    $mensaje='Query realizada: '.$query;
+                    die($mensaje);
+                }else{
+                    if(($outputQuery->num_rows)>0){
+                        while($datos=mysqli_fetch_assoc($outputQuery)){
+
+                            $id=$datos['id'];
+                            $titulo=$datos['titulo'];
+                            $imagen=$datos['imagen'];
+                            $categoria=$datos['categoria'];
+                            $duracion=$datos['duracion'];
+                            $descripcion=$datos['descripcion'];
+                            $votos=$datos['votos'];
+
+                            $pelicula=new Pelicula($id, $titulo, $imagen, $categoria, $duracion, $descripcion,$votos);
+                            array_push($arrayPeliculas,$pelicula);
+                        }
+                        return $arrayPeliculas;
+                    }else{
+                        echo '<h1 class="mensajeError">No hay películas que mostrar.</h1>';
+                    }
+                }
+            }else{
+                echo '<h1 class="mensajeError">Error al obtener los datos.</h1>';
+                echo '<h1 class="mensajeError">Vuelve al inicio:</h1>';
+                echo '<a href="categorias.php" class="botonBonito">Inicio</a>';
             }
+            
         }
 
         function pintarPeliculas($arrayPeliculas)
@@ -143,11 +150,14 @@
     ?>
     <div class="contenedor">
         <div class="primera_caja">
-        <a href="categorias.php" class="botonBonito">Inicio</a>
+            
             <?php
-                echo '<h1 id="catPelis"> Peliculas de '.$_GET['categoria'].'</h1>';
+                if(isset($_GET['categoria'])){
+                    echo '<a href="categorias.php" class="botonBonito">Inicio</a>';
+                    echo '<h1 id="catPelis"> Peliculas de '.$_GET['categoria'].'</h1>';
+                }
             ?>
-            </div>
+        </div>
         <div class="segunda_caja">
 
             <div class="primera_columna">
@@ -155,11 +165,10 @@
 
             <div class="segunda_columna">
                 <?php
-                    
-                ini_set('display_errors', 1);
-                ini_set('html_errors', 1);
 
-                echo '<form action="" method="post">
+            if(isset($_GET['categoria'])){
+                echo '
+                <form action="" method="post">
                 <div class="selector">
                     <select name="orden" id="orden">
                       <option selected="selected" value=" " selected>Default</option>
@@ -172,13 +181,13 @@
                   </form>
                 </div>';
                 echo '<br>';
+            }
 
                     $dummy = new Pelicula(0, 0, 0, 0, 0, 0,0);
 
                     $peliculaNueva = $dummy->sacarPeliculas();
                     $dummy->pintarPeliculas($peliculaNueva);
-                
-                ?>
+            ?>
                 <br>
             </div>
         </div> 

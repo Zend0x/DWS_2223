@@ -23,7 +23,7 @@
                     break;
             }
         }else{
-            echo '<link rel="stylesheet" href="styles/ficha_terror.css">'; 
+            echo '<link rel="stylesheet" href="styles/error.css">'; 
         }
     ?>
 </head>
@@ -181,9 +181,9 @@
         <div class="cajaUno">
             
             <?php
+            if(isset($_GET['categoria'])){
                 echo '<a href="categorias.php" class="botonBonito">Inicio</a>';
                 echo '<br>';
-                if(isset($_GET['categoria'])){
                     echo '<a href="peliculas.php?categoria='.$_GET['categoria'].'" class="botonBonito">Categoría</a>';
                 }
             ?>
@@ -241,14 +241,15 @@
                                     echo '<p id="sinopsis"><b>Sinopsis:</b> '.$nuevaPelicula->getDescripcion().'</p>
                                     <p id="votos"><b>Votos:</b> '.$nuevaPelicula->getVotos().'</p>';
                                     echo '</div>';
+                            }else{
+                                echo '<h1 class="mensajeError">Error al obtener los datos.</h1>';
+                                echo '<h1 class="mensajeError">Vuelve al inicio:</h1>';
+                                echo '<a href="categorias.php" class="botonBonito">Inicio</a>';
                             }
                         ?>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tercera_caja">
-            
         </div>
     </div>
 </body>
