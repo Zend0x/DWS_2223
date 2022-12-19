@@ -96,42 +96,47 @@
                 $mensaje='Query realizada: '.$query;
                 die($mensaje);
             }else{
-                //echo 'Conectado.'."<br>";
-                while($datos=mysqli_fetch_assoc($outputQuery)){
+                if(($outputQuery->num_rows)>0){
+                    while($datos=mysqli_fetch_assoc($outputQuery)){
 
-                    $id=$datos['id'];
-                    $titulo=$datos['titulo'];
-                    $imagen=$datos['imagen'];
-                    $categoria=$datos['categoria'];
-                    $duracion=$datos['duracion'];
-                    $descripcion=$datos['descripcion'];
-                    $votos=$datos['votos'];
+                        $id=$datos['id'];
+                        $titulo=$datos['titulo'];
+                        $imagen=$datos['imagen'];
+                        $categoria=$datos['categoria'];
+                        $duracion=$datos['duracion'];
+                        $descripcion=$datos['descripcion'];
+                        $votos=$datos['votos'];
 
-                    $pelicula=new Pelicula($id, $titulo, $imagen, $categoria, $duracion, $descripcion,$votos);
-                    array_push($arrayPeliculas,$pelicula);
+                        $pelicula=new Pelicula($id, $titulo, $imagen, $categoria, $duracion, $descripcion,$votos);
+                        array_push($arrayPeliculas,$pelicula);
+                    }
+                    return $arrayPeliculas;
+                }else{
+                    echo '<h1 class="mensajeError">No hay películas que mostrar.</h1>';
                 }
-                return $arrayPeliculas;
             }
         }
 
         function pintarPeliculas($arrayPeliculas)
         {
-            foreach ($arrayPeliculas as $pelicula) {
-                $nombreCategoria=$_GET['categoria'];
-                echo '<div class="pelicula">';
-                echo '<p class="titulo">'.$pelicula->getTitulo().'</p>';
-                echo '<p class="votos">Votos: '.$pelicula->getVotos().'</p>';
-                echo '<div class="poster">';
-                echo '<img src="img/' . $pelicula->getImagen() . '"> <alt="' . $pelicula->getImagen() . '">';
-                echo '<p class="duracion">Duración: '.$pelicula->getDuracion().'</p>';
-                echo '</div>';
-                echo '<div class="texto">';
-                echo '<p>' . substr($pelicula->getDescripcion(),0,150)."...". '</p>';
-                echo '</div>';
-                echo '<a href="ficha.php?id_pelicula='.$pelicula->getId().'&categoria='.$nombreCategoria.'">';
-                echo '<p class="enlaceFicha">Ver ficha</p>';
-                echo '</a>';
-                echo '</div>';
+            if(!empty($arrayPeliculas)){
+                foreach ($arrayPeliculas as $pelicula) {
+                    $nombreCategoria=$_GET['categoria'];
+                    echo '<div class="pelicula">';
+                    echo '<p class="titulo">'.$pelicula->getTitulo().'</p>';
+                    echo '<p class="votos">Votos: '.$pelicula->getVotos().'</p>';
+                    echo '<div class="poster">';
+                    echo '<img src="img/' . $pelicula->getImagen() . '"> <alt="' . $pelicula->getImagen() . '">';
+                    echo '<p class="duracion">Duración: '.$pelicula->getDuracion().'</p>';
+                    echo '</div>';
+                    echo '<div class="texto">';
+                    echo '<p>' . substr($pelicula->getDescripcion(),0,150)."...". '</p>';
+                    echo '</div>';
+                    echo '<a href="ficha.php?id_pelicula='.$pelicula->getId().'&categoria='.$nombreCategoria.'">';
+                    echo '<p class="enlaceFicha">Ver ficha</p>';
+                    echo '</a>';
+                    echo '</div>';
+                }
             }
         }
     }
@@ -155,6 +160,7 @@
                 ini_set('html_errors', 1);
 
                 echo '<form action="" method="post">
+                <div class="selector">
                     <select name="orden" id="orden">
                       <option selected="selected" value=" " selected>Default</option>
                       <option value="ORDER BY peliculas.votos ASC">Votos, ascendente</option>
@@ -163,7 +169,8 @@
                       <option value="ORDER BY peliculas.titulo DESC">Alfabeto, descendente</option>
                     </select>
                     <input type="submit" name="ordenar" value="Ordenar">
-                  </form>';
+                  </form>
+                </div>';
                 echo '<br>';
 
                     $dummy = new Pelicula(0, 0, 0, 0, 0, 0,0);
@@ -177,7 +184,7 @@
         </div> 
         
         <div class="tercera_caja">
-                
+            <p>Fernando Buendía Galindo - DWS</p>
         </div> 
     </div>
 </body>

@@ -17,7 +17,7 @@
             mysqli_select_db($login,'carteleraPeliculas');
 
             $id_pelicula=$_POST['id_pelicula'];
-            $sanitized_id_pelicula=msyqli_real_escape_string($login,$id_pelicula);
+            $sanitized_id_pelicula=mysqli_real_escape_string($login,$id_pelicula);
 
             $query="UPDATE peliculas SET votos = votos + 1 WHERE peliculas.id='".$_POST['id_pelicula']."';";
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="tercera_caja">
-
+            
         </div>
     <div>
 </body>

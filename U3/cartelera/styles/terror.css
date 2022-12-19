@@ -145,7 +145,7 @@
     bottom: 0;
 }
 
-.titulo,.votos,.duracion,.texto,.enlaceFicha,.enlaceFicha:visited{
+.titulo,.votos,.duracion,.texto,.enlaceFicha,.enlaceFicha:visited,.mensajeError{
     font-family: 'New Rocker', cursive;
     text-decoration: none;
     color: rgb(163, 163, 4);

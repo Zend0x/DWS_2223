@@ -108,6 +108,7 @@
 #titulo,#anno,#duracion,#directores,#reparto,#sinopsis,#votos{
     font-size: x-large;
     margin: 1% 1%1% 1%;
-    color: yellow;
+    color: rgb(233, 233, 5);
+    text-shadow: 2px 2px rgb(87, 87, 3);
     font-family: 'New Rocker', cursive;
 }

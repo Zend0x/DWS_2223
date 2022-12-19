@@ -47,7 +47,6 @@
     width:50%;
     text-align: center;
 }
-
 .tercera_columna{
     float:left;
     height: 100%;
@@ -144,7 +143,7 @@
     background-image: url('../img/shanfengTemple.jpg');
 }
 
-.titulo,.votos,.duracion,.texto,#catPelis,.enlaceFicha,.enlaceFicha:visited{
+.titulo,.votos,.duracion,.texto,#catPelis,.enlaceFicha,.enlaceFicha:visited,.mensajeError{
     font-family: 'Kaushan Script', cursive;
     text-decoration: none;
     color: rgb(255, 65, 17);

@@ -113,6 +113,10 @@
             $login=mysqli_connect('localhost','root','12345');
             mysqli_select_db($login,'carteleraPeliculas');
 
+            
+            $id_pelicula=$_GET['id_pelicula'];
+            $id_pelicula_sanitized=mysqli_real_escape_string($login,$id_pelicula);
+
             $query="SELECT CONCAT_WS(' ',actores.nombre,actores.apellidos) as 'nombreCompleto' FROM actores 
             INNER JOIN actores_peliculas ON actores.id=actores_peliculas.id_actor
             INNER JOIN peliculas ON actores_peliculas.id_pelicula=peliculas.id
@@ -136,6 +140,9 @@
         function obtenerDirectores(){
             $login=mysqli_connect('localhost','root','12345');
             mysqli_select_db($login,'carteleraPeliculas');
+
+            $id_pelicula=$_GET['id_pelicula'];
+            $id_pelicula_sanitized=mysqli_real_escape_string($login,$id_pelicula);
 
             $query="SELECT CONCAT_WS(' ',directores.nombre,directores.apellidos) as 'nombreCompleto' FROM directores 
             INNER JOIN directores_peliculas ON directores.id=directores_peliculas.id_director
@@ -185,6 +192,12 @@
                     
                     <div class="votar">
                         <?php
+                        $login=mysqli_connect('localhost','root','12345');
+                        mysqli_select_db($login,'carteleraPeliculas');
+
+                        $id_pelicula=$_GET['id_pelicula'];
+                        $id_pelicula_sanitized=mysqli_real_escape_string($login,$id_pelicula);
+
                         echo '<form action="votado.php" method="post">';
                         echo "<input type='hidden' name='id_pelicula' value='".$id_pelicula_sanitized."' />";
                         echo '<input type="submit" name="submit" value="Votar" id="botonVotar">';
@@ -198,18 +211,26 @@
                         $directores=implode(', ',$nuevaPelicula->obtenerDirectores());
                             echo '<p id="titulo"><b>Titulo:</b> '.$nuevaPelicula->getTitulo().'</p>
                             <p id="anno"><b>Año:</b> '.$nuevaPelicula->getAnno().'</p>
-                            <p id="duracion"><b>Duración:</b> '.$nuevaPelicula->getDuracion().' minutos.</p>
-                            <p id="directores"><b>Director(es): </b>'.$directores.'</p>
-                            <p id="reparto"><b>Reparto: </b>'.$stringActoresFinal.'</p>
-                            <p id="sinopsis"><b>Sinopsis:</b> '.$nuevaPelicula->getDescripcion().'</p>
+                            <p id="duracion"><b>Duración:</b> '.$nuevaPelicula->getDuracion().' minutos.</p>';
+                            if(!empty($directores)){
+                                echo '<p id="directores"><b>Director(es): </b>'.$directores.'</p>';
+                            } else {
+                                echo '<p id="directores"><b>Director(es): </b>No hay resultados.</p>';
+                            }
+                            if(!empty($stringActoresFinal)){
+                                echo '<p id="reparto"><b>Reparto: </b>'.$stringActoresFinal.'</p>';
+                            } else {
+                                echo '<p id="reparto"><b>Reparto: </b>No hay resultados.</p>';
+                            }
+                            echo '<p id="sinopsis"><b>Sinopsis:</b> '.$nuevaPelicula->getDescripcion().'</p>
                             <p id="votos"><b>Votos:</b> '.$nuevaPelicula->getVotos().'</p>';
                         ?>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="cajaTres">
-            <p>a</p>
+        <div class="tercera_caja">
+            
         </div>
     </div>
 </body>
