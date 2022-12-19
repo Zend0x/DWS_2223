@@ -168,7 +168,7 @@
                       <option value="ORDER BY peliculas.titulo ASC">Alfabeto, ascendente</option>
                       <option value="ORDER BY peliculas.titulo DESC">Alfabeto, descendente</option>
                     </select>
-                    <input type="submit" name="ordenar" value="Ordenar">
+                    <input type="submit" name="ordenar" value="Ordenar" class="botonForm">
                   </form>
                 </div>';
                 echo '<br>';

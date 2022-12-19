@@ -9,15 +9,21 @@
     
     <?php
 
-        $categoriaSeleccionada = strtoupper($_GET['categoria']);
+        if(isset($_GET['categoria'])){
+            $categoriaSeleccionada = strtoupper($_GET['categoria']);
 
-        switch ($categoriaSeleccionada) {
-            case 'TERROR':
-                echo '<link rel="stylesheet" href="styles/ficha_terror.css">';
-                break;
-            case 'ARTES MARCIALES':
-                echo '<link rel="stylesheet" href="styles/ficha_MA.css">';
-                break;
+            switch ($categoriaSeleccionada) {
+                case 'TERROR':
+                    echo '<link rel="stylesheet" href="styles/ficha_terror.css">';
+                    echo '<link rel="shortcut icon" href="img/favicon_terror.ico" type="image/x-icon">';
+                    break;
+                case 'ARTES MARCIALES':
+                    echo '<link rel="stylesheet" href="styles/ficha_MA.css">';
+                    echo '<link rel="shortcut icon" href="img/favicon_MA.ico" type="image/x-icon">';
+                    break;
+            }
+        }else{
+            echo '<link rel="stylesheet" href="styles/ficha_terror.css">'; 
         }
     ?>
 </head>
@@ -76,36 +82,40 @@
             }
             mysqli_select_db($login,'carteleraPeliculas');
 
-            $id_pelicula=$_GET['id_pelicula'];
-            $id_pelicula_sanitized=mysqli_real_escape_string($login,$id_pelicula);
+            if(isset($_GET['id_pelicula'])){
+                $id_pelicula=$_GET['id_pelicula'];
+                $id_pelicula_sanitized=mysqli_real_escape_string($login,$id_pelicula);
 
-            $query="SELECT peliculas.id,peliculas.titulo,peliculas.anno,peliculas.imagen,peliculas.categoria,peliculas.duracion,peliculas.descripcion,peliculas.votos,
-            categorias.nombre as 'nombreCategoria'
-            FROM peliculas 
-            INNER JOIN categorias ON peliculas.categoria=categorias.id
-            WHERE peliculas.id='".$id_pelicula_sanitized."';";
+                $query="SELECT peliculas.id,peliculas.titulo,peliculas.anno,peliculas.imagen,peliculas.categoria,peliculas.duracion,peliculas.descripcion,peliculas.votos,
+                categorias.nombre as 'nombreCategoria'
+                FROM peliculas 
+                INNER JOIN categorias ON peliculas.categoria=categorias.id
+                WHERE peliculas.id='".$id_pelicula_sanitized."';";
 
-            $outputQuery=mysqli_query($login,$query);
+                $outputQuery=mysqli_query($login,$query);
 
-            if(!$outputQuery){
-                $mensaje='Consulta inválida.'.mysqli_error($login);
-                die($mensaje);
-            }else{
-                //echo 'Conectado.'."<br>";
-                while($datos=mysqli_fetch_assoc($outputQuery)){
+                if(!$outputQuery){
+                    $mensaje='Consulta inválida.'.mysqli_error($login);
+                    die($mensaje);
+                }else{
+                    //echo 'Conectado.'."<br>";
+                    while($datos=mysqli_fetch_assoc($outputQuery)){
 
-                    $id=$datos['id'];
-                    $titulo=$datos['titulo'];
-                    $anno=$datos['anno'];
-                    $imagen=$datos['imagen'];
-                    $categoria=$datos['nombreCategoria'];
-                    $duracion=$datos['duracion'];
-                    $descripcion=$datos['descripcion'];
-                    $votos=$datos['votos'];
+                        $id=$datos['id'];
+                        $titulo=$datos['titulo'];
+                        $anno=$datos['anno'];
+                        $imagen=$datos['imagen'];
+                        $categoria=$datos['nombreCategoria'];
+                        $duracion=$datos['duracion'];
+                        $descripcion=$datos['descripcion'];
+                        $votos=$datos['votos'];
 
-                    $objetoPelicula=new Pelicula($id, $titulo,$anno, $imagen, $categoria, $duracion, $descripcion,$votos);
+                        $objetoPelicula=new Pelicula($id, $titulo,$anno, $imagen, $categoria, $duracion, $descripcion,$votos);
+                    }
+                    return $objetoPelicula;
                 }
-                return $objetoPelicula;
+            }else{
+                echo '<h1 id="titulo" style="text-align:center;">No se han encontrado los datos solicitados.</h1>';
             }
         }
         
@@ -173,7 +183,9 @@
             <?php
                 echo '<a href="categorias.php" class="botonBonito">Inicio</a>';
                 echo '<br>';
-                echo '<a href="peliculas.php?categoria='.$_GET['categoria'].'" class="botonBonito">Categoría</a>';
+                if(isset($_GET['categoria'])){
+                    echo '<a href="peliculas.php?categoria='.$_GET['categoria'].'" class="botonBonito">Categoría</a>';
+                }
             ?>
         </div>
         <div class="cajaDos">
@@ -185,45 +197,51 @@
                         <?php
                             $dummy=new Pelicula(0,0,0,0,0,0,0,0);
                             $nuevaPelicula=$dummy->fichaPelicula();
-                            echo '<div class="poster">';
-                            echo '<img src="img/'.$nuevaPelicula->getImagen().'"> <alt="'.$nuevaPelicula->getImagen().'">';
-                            echo '</div>';
+                            if(!empty($nuevaPelicula)){
+                                echo '<div class="poster">';
+                                echo '<img src="img/'.$nuevaPelicula->getImagen().'"> <alt="'.$nuevaPelicula->getImagen().'">';
+                                echo '</div>';
+                            }
                         ?>
                     
                     <div class="votar">
                         <?php
-                        $login=mysqli_connect('localhost','root','12345');
-                        mysqli_select_db($login,'carteleraPeliculas');
+                            $login=mysqli_connect('localhost','root','12345');
+                            mysqli_select_db($login,'carteleraPeliculas');
+                            if(isset($_GET['id_pelicula'])){
+                                $id_pelicula=$_GET['id_pelicula'];
+                                $id_pelicula_sanitized=mysqli_real_escape_string($login,$id_pelicula);
 
-                        $id_pelicula=$_GET['id_pelicula'];
-                        $id_pelicula_sanitized=mysqli_real_escape_string($login,$id_pelicula);
-
-                        echo '<form action="votado.php" method="post">';
-                        echo "<input type='hidden' name='id_pelicula' value='".$id_pelicula_sanitized."' />";
-                        echo '<input type="submit" name="submit" value="Votar" id="botonVotar">';
-                        echo '</form>';
+                                echo '<form action="votado.php" method="post">';
+                                echo "<input type='hidden' name='id_pelicula' value='".$id_pelicula_sanitized."' />";
+                                echo '<input type="submit" name="submit" value="Votar" id="botonVotar">';
+                                echo '</form>';
+                            }
                         ?>
                     </div>
 
-                    <div class="datos">
                         <?php
-                        $stringActoresFinal=implode(', ',$nuevaPelicula->obtenerActores());
-                        $directores=implode(', ',$nuevaPelicula->obtenerDirectores());
-                            echo '<p id="titulo"><b>Titulo:</b> '.$nuevaPelicula->getTitulo().'</p>
-                            <p id="anno"><b>Año:</b> '.$nuevaPelicula->getAnno().'</p>
-                            <p id="duracion"><b>Duración:</b> '.$nuevaPelicula->getDuracion().' minutos.</p>';
-                            if(!empty($directores)){
-                                echo '<p id="directores"><b>Director(es): </b>'.$directores.'</p>';
-                            } else {
-                                echo '<p id="directores"><b>Director(es): </b>No hay resultados.</p>';
+                            if(!empty($nuevaPelicula)){
+                                $stringActoresFinal=implode(', ',$nuevaPelicula->obtenerActores());
+                                $directores=implode(', ',$nuevaPelicula->obtenerDirectores());
+                                    echo '<div class="datos">';
+                                    echo '<p id="titulo"><b>Titulo:</b> '.$nuevaPelicula->getTitulo().'</p>
+                                    <p id="anno"><b>Año:</b> '.$nuevaPelicula->getAnno().'</p>
+                                    <p id="duracion"><b>Duración:</b> '.$nuevaPelicula->getDuracion().' minutos.</p>';
+                                    if(!empty($directores)){
+                                        echo '<p id="directores"><b>Director(es): </b>'.$directores.'</p>';
+                                    } else {
+                                        echo '<p id="directores"><b>Director(es): </b>No hay resultados.</p>';
+                                    }
+                                    if(!empty($stringActoresFinal)){
+                                        echo '<p id="reparto"><b>Reparto: </b>'.$stringActoresFinal.'</p>';
+                                    } else {
+                                        echo '<p id="reparto"><b>Reparto: </b>No hay resultados.</p>';
+                                    }
+                                    echo '<p id="sinopsis"><b>Sinopsis:</b> '.$nuevaPelicula->getDescripcion().'</p>
+                                    <p id="votos"><b>Votos:</b> '.$nuevaPelicula->getVotos().'</p>';
+                                    echo '</div>';
                             }
-                            if(!empty($stringActoresFinal)){
-                                echo '<p id="reparto"><b>Reparto: </b>'.$stringActoresFinal.'</p>';
-                            } else {
-                                echo '<p id="reparto"><b>Reparto: </b>No hay resultados.</p>';
-                            }
-                            echo '<p id="sinopsis"><b>Sinopsis:</b> '.$nuevaPelicula->getDescripcion().'</p>
-                            <p id="votos"><b>Votos:</b> '.$nuevaPelicula->getVotos().'</p>';
                         ?>
                     </div>
                 </div>

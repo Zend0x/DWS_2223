@@ -16,14 +16,18 @@
             $login=mysqli_connect('localhost','root','12345');
             mysqli_select_db($login,'carteleraPeliculas');
 
-            $id_pelicula=$_POST['id_pelicula'];
-            $sanitized_id_pelicula=mysqli_real_escape_string($login,$id_pelicula);
+            if(isset($_POST['id_pelicula'])){
+                $id_pelicula=$_POST['id_pelicula'];
+                $sanitized_id_pelicula=mysqli_real_escape_string($login,$id_pelicula);
 
-            $query="UPDATE peliculas SET votos = votos + 1 WHERE peliculas.id='".$_POST['id_pelicula']."';";
+                $query="UPDATE peliculas SET votos = votos + 1 WHERE peliculas.id='".$sanitized_id_pelicula."';";
 
-            mysqli_query($login,$query);
+                mysqli_query($login,$query);
 
-            echo 'Has votado a la película '.$_POST['id_pelicula'];
+                echo 'Has votado a la película '.$sanitized_id_pelicula.'.';
+            }else{
+                echo 'Error al votar. ID no proporcionado.';
+            }
         }
     ?>
     <div class="contenedor">

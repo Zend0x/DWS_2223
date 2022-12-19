@@ -5,8 +5,8 @@
 }
 
 .botonBonito {
-    color: rgb(239, 255, 17);
-    text-shadow: 1px 1px rgb(185, 74, 0);
+    color: rgb(163, 163, 4);
+    text-shadow: 2px 2px rgb(105, 105, 3);
 
     margin-top: 0.5%;
     margin-left: 50%;
@@ -23,6 +23,24 @@
 .botonBonito:hover{
     color: #0e4f61;
     background-color: rgb(191, 204, 12);
+}
+
+select,option{
+    color: rgb(163, 163, 4);
+    text-shadow: 2px 2px rgb(105, 105, 3);
+    background-color: #0e4f61;
+    border: 1px solid #000000;
+    text-align: center;
+    border-radius: 10px;
+    padding: 3px;
+}
+.botonForm{
+    color: rgb(163, 163, 4);
+    text-shadow: 2px 2px rgb(105, 105, 3);
+    background-color: #0e4f61;
+    border: 1px solid #000000;
+    padding: 4px;
+    border-radius: 10px;
 }
 
 .segunda_caja{
@@ -122,7 +140,7 @@
     margin-top: 0.5%;
     font-size: 3rem;
     font-family: 'Hanalei Fill', cursive;
-    -webkit-text-stroke: 1px greenyellow;
+    -webkit-text-stroke: 1px rgb(139, 180, 2);
 }
 
 .enlaceFicha{
