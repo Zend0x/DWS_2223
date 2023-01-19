@@ -21,8 +21,11 @@
             $resultado=$accesoDatosTorneo->obtener();
 
             $listadoTorneos=array();
-            foreach($listadoTorneos as $torneo){
-                
+            foreach($resultado as $torneo){
+                $torneoReglasNegocio1=new TorneoReglasNegocio();
+                $torneoReglasNegocio1->Init($torneo['ID']);
+                array_push($listadoTorneos,$torneoReglasNegocio1);
             }
+            return $listadoTorneos;
         }
     }
