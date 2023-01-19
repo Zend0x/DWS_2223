@@ -1,21 +1,22 @@
 <!doctype html>
 <html>
 <head>
-    
+
 </head>
 
     <body>
         <h1> Listado de torneos </h1>
         <?php
-            require("../vistas/torneoReglasNegocio.php");
+            ini_set('display_errors', 1);
+            ini_set('html_errors', 1);
+            require("../negocio/torneoReglasNegocio.php");
 
-            $torneosBL = new TorneoReglasNegocio();
-            $datosTorneos = $torneosBL->obtener();
+            $vnTorneo = new TorneoReglasNegocio();
+            $datosTorneos = $vnTorneo->obtener();
             
-            foreach ($datosTorneos as $torneo)
-            {
+            foreach ($datosTorneos as $torneo){
                 echo "<div>";
-                print($torneo->getID());
+                echo $torneo->getID(),": ",$torneo->getNombre().". Día: ",$torneo->getFecha();
                 echo "</div>";
             }
         ?>
