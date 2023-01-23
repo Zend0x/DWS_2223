@@ -9,7 +9,7 @@
 <body>
     <?php
         if(isset($_POST['id_torneo'])){
-            echo "xD loooooooool";
+            
         }
     ?>
 </body>
