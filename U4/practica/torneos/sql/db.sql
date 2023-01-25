@@ -10,9 +10,9 @@ CREATE TABLE T_jugadores(
 );
 
 CREATE TABLE T_usuarios(
-	id_usuario int(6) auto_increment primary key,
-    username varchar(20) UNIQUE,
-    tipoUsuario ENUM('admin','normal')
+    username varchar(100) primary key,
+    contrasena varchar(255) not null,
+    tipoUsuario varchar(255)
 );
 
 CREATE TABLE T_torneos(
@@ -42,5 +42,7 @@ INSERT INTO T_jugadores(nombre,apellidos,nacionalidad) VALUES ('Charles', 'White
 
 INSERT INTO T_partidos(id_torneo,id_jugadorA,id_jugadorB,id_ganador) VALUES (1,1,2,2);
 
+select username,contrasena,tipoUsuario from T_usuarios;
+/*
 SELECT * FROM T_partidos;
 SELECT * from T_torneos;
