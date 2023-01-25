@@ -8,9 +8,12 @@
 </head>
 <body>
     <?php
-        if(isset($_POST['id_torneo'])){
-            
+        session_start(); // reanudamos la sesión
+        if (!isset($_SESSION['username']))
+        {
+            header("Location: loginVista.php");
         }
     ?>
+    <h1>Vista del cuadro del torneo</h1>
 </body>
 </html>

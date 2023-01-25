@@ -6,6 +6,13 @@
 
     <body>
         <?php
+            session_start(); // reanudamos la sesión
+            if (!isset($_SESSION['username']))
+            {
+                header("Location: loginVista.php");
+            }
+        ?>
+        <?php
             ini_set('display_errors', 1);
             ini_set('html_errors', 1);
             require("../negocio/resultadoPartidoReglasNegocio.php");
