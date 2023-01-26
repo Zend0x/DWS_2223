@@ -10,13 +10,12 @@ class TorneosReglasNegocio
     private $_LOCALIZACION;
     private $_ESTADO;
     private $_GANADOR;
-    private $_CANTIDADTORNEOS;
 
 	function __construct()
     {
     }
 
-    function init($id,$nombre,$fecha,$localizacion,$estado,$ganador,$cantidadTorneos)
+    function init($id,$nombre,$fecha,$localizacion,$estado,$ganador)
     {
         $this->_ID = $id;
         $this->_NOMBRE=$nombre;
@@ -24,7 +23,6 @@ class TorneosReglasNegocio
         $this->_LOCALIZACION=$localizacion;
         $this->_ESTADO=$estado;
         $this->_GANADOR=$ganador;
-        $this->_CANTIDADTORNEOS=$cantidadTorneos;
     }
 
     function getID()
@@ -46,9 +44,6 @@ class TorneosReglasNegocio
     function getGanador(){
         return $this->_GANADOR;
     }
-    function getCantidadTorneos(){
-        return $this->_CANTIDADTORNEOS;
-    }
 
     function obtener()
     {
@@ -60,7 +55,7 @@ class TorneosReglasNegocio
         foreach ($rs as $torneo)
         {
             $oTorneosReglasNegocio = new TorneosReglasNegocio();
-            $oTorneosReglasNegocio->Init($torneo['id_torneo'],$torneo['nombre'],$torneo['fecha'],$torneo['localizacion'],$torneo['estado'],$torneo['ganador'],$torneo['cantidadTorneos']);
+            $oTorneosReglasNegocio->Init($torneo['id_torneo'],$torneo['nombre'],$torneo['fecha'],$torneo['localizacion'],$torneo['estado'],$torneo['ganador']);
             array_push($listaTorneos,$oTorneosReglasNegocio);
          
         }

@@ -1,3 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    height: 100%;width: 100%;
+}
+.contenedorGeneral{
+    height: 100%;
+    width: 100%;
+    background-color: gray;
+}
+.topPage{
+    height: 10%;
+    width: 100%;
+}
+.welcome{
+    float: right;
+    margin-right: 1%;
+    margin-top: 1%;
+}
+#textoPrincipal{
+    float:left;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
 .tablaTorneos{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -6,12 +33,15 @@
     margin-right: auto;
 }
 .tablaTorneos td, .tablaTorneos th{
-    border: 1px solid rgb(185, 185, 185);
+    border: 1px solid rgb(136, 136, 136);
     padding: 7px;
 }
 
 .tablaTorneos tr:nth-child(odd){
-    background-color: rgb(216, 231, 236);
+    background-color: rgb(229, 248, 255);
+}
+.tablaTorneos tr:nth-child(even){
+    background-color: rgb(212, 231, 236);
 }
 
 .tablaTorneos th{
@@ -20,4 +50,9 @@
     text-align: center;
     background-color: rgb(1, 125, 197);
     color:white;
+}
+
+#cantidadTorneos{
+    color: rgb(4, 111, 182);
+    text-align: right;
 }
