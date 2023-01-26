@@ -11,7 +11,7 @@ class PartidoAccesoDatos{
 		{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
- 		mysqli_select_db($conexion, 'T_torneos');
+ 		mysqli_select_db($conexion, 'torneosTenisMesaDB');
 		$consulta = mysqli_prepare($conexion, "SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador 
         FROM T_partidos WHERE T_partidos.id_partido='".$_GET['id_partido']."';");
         $consulta->execute();

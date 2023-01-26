@@ -14,7 +14,7 @@ class UsuarioAccesoDatos{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
  		
-        mysqli_select_db($conexion, 'T_torneos');
+        mysqli_select_db($conexion, 'torneosTenisMesaDB');
 		$consulta = mysqli_prepare($conexion, "insert into T_usuarios(username,contrasena,tipoUsuario) values (?,?,?);");
         $hash = password_hash($contrasena, PASSWORD_DEFAULT);
         $consulta->bind_param("sss", $username,$hash,$perfil);
@@ -29,7 +29,7 @@ class UsuarioAccesoDatos{
 		if (mysqli_connect_errno()){
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
-        mysqli_select_db($conexion, 'T_torneos');
+        mysqli_select_db($conexion, 'torneosTenisMesaDB');
         $consulta = mysqli_prepare($conexion, "select username,contrasena,tipoUsuario from T_usuarios where username = ?;");
         $sanitized_usuario = mysqli_real_escape_string($conexion, $username);       
         $consulta->bind_param("s", $sanitized_usuario);
