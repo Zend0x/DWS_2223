@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS T_torneos;
-CREATE DATABASE T_torneos;
-USE T_torneos;
+DROP DATABASE IF EXISTS torneosTenisMesaDB;
+CREATE DATABASE torneosTenisMesaDB;
+USE torneosTenisMesaDB;
 
 CREATE TABLE T_jugadores(
 	id_jugador int(5) auto_increment primary key,
@@ -10,15 +10,17 @@ CREATE TABLE T_jugadores(
 );
 
 CREATE TABLE T_usuarios(
-	id_usuario int(6) auto_increment primary key,
-    username varchar(20) UNIQUE,
-    tipoUsuario ENUM('admin','normal')
+    username varchar(20) primary key,
+    contrasena varchar(255) NOT NULL,
+    tipoUsuario varchar(50)
 );
 
 CREATE TABLE T_torneos(
 	id_torneo int(5) auto_increment primary key,
     nombre varchar(100) NOT NULL,
     fecha DATE NOT NULL,
+    estado VARCHAR(50) NOT NULL,
+    ganador varchar(50),
     localizacion varchar(50)
 );
 
@@ -34,13 +36,14 @@ CREATE TABLE T_partidos(
     FOREIGN KEY (id_ganador) REFERENCES T_jugadores(id_jugador)
 );
 
-insert into T_torneos(nombre,localizacion,fecha) VALUES ('Gran Torneo de la Copa Estrella del Universo','Mushroom Kingdom','2022/12/22');
-insert into T_torneos(nombre,localizacion,fecha) VALUES ('Gran Torneo Interestelar de la Copa Pistón de Doc Hudson by Rust Eze','Radiador Springs','2021/06/20');
+insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran Torneo de la Copa Estrella del Universo','Mushroom Kingdom','2022/12/22',"finalizado","Juanito");
+insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran Torneo Interestelar de la Copa Pistón de Doc Hudson by Rust Eze','Radiador Springs','2021/06/20',"en curso"," ");
+insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Campeonato de España Absoluto','Talavera de la Reina','2023/06/25',"Pendiente"," ");
 
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad) VALUES ('Jaime','Águilas','UZ');
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad) VALUES ('Charles', 'White', 'USA');
 
 INSERT INTO T_partidos(id_torneo,id_jugadorA,id_jugadorB,id_ganador) VALUES (1,1,2,2);
-
+/*
 SELECT * FROM T_partidos;
 SELECT * from T_torneos;

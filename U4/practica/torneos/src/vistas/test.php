@@ -6,14 +6,14 @@ require("../infraestructura/usuarioAccesoDatos.php");
 function test_alta_usuario()
 {
     $u = new UsuarioAccesoDatos();
-    return $u->insertar('fernandito','administrador','12345678');
+    return $u->insertar('jaimito','jugador','12345678');
 }
 
 function test_verificar_usuario_encontrado()
 {
-    $perfil_esperado = 'administrador';
+    $perfil_esperado = 'jugador';
     $u = new UsuarioAccesoDatos();
-    $perfil = $u->verificar('fernandito','12345678');
+    $perfil = $u->verificar('jaimito','12345678');
     return $perfil === $perfil_esperado;
 }
 

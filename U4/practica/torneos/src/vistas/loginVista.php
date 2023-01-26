@@ -1,27 +1,27 @@
 <?php
 
-require ("../negocio/usuarioReglasNegocio.php");
+    require ("../negocio/usuarioReglasNegocio.php");
 
-if ($_SERVER["REQUEST_METHOD"]=="POST")
-{
-    $usuarioBL = new UsuarioReglasNegocio();
-    $perfil =  $usuarioBL->verificar($_POST['username'],$_POST['contrasena']);
-    if(strlen($_POST['contrasena'])>=8){
-        if ($perfil==="administrador"){
-            session_start(); //inicia o reinicia una sesión
-            $_SESSION['username'] = $_POST['username'];
-            header("Location: torneosVistaAdmin.php");
-        }else if($perfil==="jugador"){
-            session_start(); //inicia o reinicia una sesión
-            $_SESSION['username'] = $_POST['username'];
-            header("Location: torneosVistaUsuario.php");
+    if ($_SERVER["REQUEST_METHOD"]=="POST")
+    {
+        $usuarioBL = new UsuarioReglasNegocio();
+        $perfil =  $usuarioBL->verificar($_POST['username'],$_POST['contrasena']);
+        if(strlen($_POST['contrasena'])>=8){
+            if ($perfil==="administrador"){
+                session_start(); //inicia o reinicia una sesión
+                $_SESSION['username'] = $_POST['username'];
+                header("Location: torneosVistaAdmin.php");
+            }else if($perfil==="jugador"){
+                session_start(); //inicia o reinicia una sesión
+                $_SESSION['username'] = $_POST['username'];
+                header("Location: torneosVistaUsuario.php");
+            }else{
+                $error = true;
+            }
         }else{
-            $error = true;
+            $badPass=true;
         }
-    }else{
-        $badPass=true;
     }
-}
 ?>
 <!DOCTYPE html>
 <html>
