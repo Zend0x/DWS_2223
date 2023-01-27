@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    height: 100%;width: 100%;
+}
+.contenedorGeneral{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(154, 207, 243);
+    position: absolute;
+}
+.formularioLogin{
+    width: 40%;
+    height: 40%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: red;
+}
+#formulario{
+    text-align: center;
+}
+
+#formulario input,label{
+    margin-bottom: 2%;
+}

@@ -1,9 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
 <?php
 
     require ("../negocio/usuarioReglasNegocio.php");
 
-    if ($_SERVER["REQUEST_METHOD"]=="POST")
-    {
+    if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $usuarioBL = new UsuarioReglasNegocio();
         $perfil =  $usuarioBL->verificar($_POST['username'],$_POST['contrasena']);
         if(strlen($_POST['contrasena'])>=8){
@@ -23,31 +25,31 @@
         }
     }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
     <title>Login</title>
     <meta charset = "UTF-8">
+    <link rel="stylesheet" href="../../css/login.css">
 </head>
 <body>
+    <div class="contenedorGeneral">
+        <div class="formularioLogin">
+            <form id="formulario" method = "POST" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"><br>
+                <label for = "username"> Usuario: </label><br>
+                <input id="username" name = "username" type = "text"><br>
+                <label for = "contrasena"> Contraseña: </label><br>
+                <input id = "contrasena" name = "contrasena" type = "password"><br>
+                <input type = "submit">
+            </form>
 
-    <form method = "POST" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for = "username"> Usuario: </label>
-        <input id="username" name = "username" type = "text">
-        <label for = "contrasena"> Contraseña: </label>
-        <input id = "contrasena" name = "contrasena" type = "password">
-        <input type = "submit">
-    </form>
-
-    <?php
-        ini_set('display_errors', 1);
-        ini_set('html_errors', 1);
-        if (isset($error))
-        {
-            print("<div style='color:red;'> No tienes acceso </div>");
-        }else if(isset($badPass)){
-            print("<div style='color:red;'>Contraseña demasiado corta. 8 carácteres como mínimo.</div>");
-        }
-    ?>
+            <?php
+                if (isset($error))
+                {
+                    print("<div style='color:red;'> No tienes acceso </div>");
+                }else if(isset($badPass)){
+                    print("<div style='color:red;'>Contraseña demasiado corta. 8 carácteres como mínimo.</div>");
+                }
+            ?>
+        </div>
+        
+    </div>
 </body>
 </html>

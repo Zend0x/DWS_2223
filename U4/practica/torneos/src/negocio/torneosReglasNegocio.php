@@ -25,8 +25,7 @@ class TorneosReglasNegocio
         $this->_GANADOR=$ganador;
     }
 
-    function getID()
-    {
+    function getID(){
         return $this->_ID;
     }
     function getNombre(){
@@ -45,8 +44,7 @@ class TorneosReglasNegocio
         return $this->_GANADOR;
     }
 
-    function obtener()
-    {
+    function obtener(){
         $torneosDAL = new TorneosAccesoDatos();
         $rs = $torneosDAL->obtener();
 
@@ -59,9 +57,7 @@ class TorneosReglasNegocio
             array_push($listaTorneos,$oTorneosReglasNegocio);
          
         }
-        
         return $listaTorneos;
-        
     }
 }
 

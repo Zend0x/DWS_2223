@@ -28,7 +28,7 @@ body,html{
 .tablaTorneos{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 50%;
+    width: 55%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -51,13 +51,21 @@ body,html{
     background-color: rgb(1, 125, 197);
     color:white;
 }
-
+#columnaID, #columnaGanador, #columnaFecha{
+    text-align: center;
+}
+#nombreTorneo:hover{
+    background-color: rgb(172, 188, 194);
+}
+#textoNombre:link,#textoNombre:visited,#textoNombre:active{
+    text-decoration: none;
+    color: black;
+}
 #cantidadTorneos{
     color: rgb(4, 111, 182);
     text-align: right;
 }
-
-#crearTorneo{
-    color: red;
+#crearTorneo,#crearTorneo:visited{
     text-align: left;
+    color: blue;
 }

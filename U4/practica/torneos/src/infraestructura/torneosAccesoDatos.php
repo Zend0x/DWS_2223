@@ -28,6 +28,21 @@ class TorneosAccesoDatos
         }
 		return $torneos;
 	}
+
+	function insertar($nombre,$fecha,$estado,$ganador){
+		$conexion = mysqli_connect('localhost','root','12345');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		
+        mysqli_select_db($conexion, 'torneosTenisMesaDB');
+		$consulta = mysqli_prepare($conexion, "insert into T_torneos(nombre,fecha,estado,ganador) values (?,?,?,?);");
+        $consulta->bind_param("ssss", $nombre,$fecha,$estado,$ganador);
+        $res = $consulta->execute();
+        
+		return $res;
+	}
 }
 
 
