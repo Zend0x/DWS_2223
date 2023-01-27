@@ -31,6 +31,7 @@
             </div>
         </div>
         <table class="tablaTorneos">
+            <caption id="crearTorneo"><a href="crearTorneoVista.php">Crear torneo</a></caption>
             <caption id="cantidadTorneos">Cantidad de torneos: <?php echo count($datosTorneos); ?></caption>
             <tr>
                 <th>ID</th>
@@ -49,7 +50,7 @@
                     echo "<td>".$torneo->getFecha()."</td>";
                     echo "<td>".ucfirst($torneo->getEstado())."</td>";
                     echo "<td>".ucfirst($torneo->getGanador())."</td>";
-                    echo "<td>Editar</td>";
+                    echo "<td><a href='editarTorneosVista.php'>Editar</a></td>";
                     echo "<td>Borrar</td>";
                     echo "</tr>";
                 }

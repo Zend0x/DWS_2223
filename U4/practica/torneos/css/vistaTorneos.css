@@ -8,7 +8,7 @@ body,html{
 .contenedorGeneral{
     height: 100%;
     width: 100%;
-    background-color: gray;
+    background-color: rgb(154, 207, 243);
 }
 .topPage{
     height: 10%;
@@ -55,4 +55,9 @@ body,html{
 #cantidadTorneos{
     color: rgb(4, 111, 182);
     text-align: right;
+}
+
+#crearTorneo{
+    color: red;
+    text-align: left;
 }
