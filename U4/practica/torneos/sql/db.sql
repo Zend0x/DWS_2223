@@ -40,12 +40,23 @@ insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran To
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran Torneo Interestelar de la Copa Pistón de Doc Hudson by Rust Eze','Radiador Springs','2021/06/20',"en curso"," ");
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Campeonato de España Absoluto','Talavera de la Reina','2023/06/25',"Pendiente"," ");
 
-INSERT INTO T_jugadores(nombre,apellidos,nacionalidad) VALUES ('Jaime','Águilas','UZ');
-INSERT INTO T_jugadores(nombre,apellidos,nacionalidad) VALUES ('Charles', 'White', 'USA');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Fernando','Chui','MO');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ukhnaagiin','Khürelsükh','MN');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Alfonso','el Africano','ES');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
 
-INSERT INTO T_partidos(id_torneo,id_jugadorA,id_jugadorB,id_ganador) VALUES (1,1,2,2);
+SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador FROM T_partidos WHERE T_partidos.id_torneo=4;
 
-SELECT id_torneo, nombre,fecha,localizacion,estado,ganador,COUNT(id_torneo) FROM T_torneos GROUP BY id_torneo;
+SELECT * from T_partidos;
+SELECT * from T_jugadores;
+
+
+DELETE FROM T_partidos WHERE true;
+DELETE FROM T_torneos WHERE true;
 
 /*
 SELECT * FROM T_partidos;

@@ -1,8 +1,7 @@
 <?php
-
+require("partidoAccesoDatos.php");
 class TorneosAccesoDatos
 {
-	
 	function __construct()
     {
     }
@@ -41,8 +40,29 @@ class TorneosAccesoDatos
         $consulta->bind_param("ssss", $nombre,$fecha,$estado,$ganador);
         $res = $consulta->execute();
         
-		return $res;
-	}
+
+		$consulta2=mysqli_prepare($conexion,'SELECT T_torneos.id_torneo FROM T_torneos WHERE nombre="'.$nombre.'" AND fecha="'.$fecha.'";');
+		$consulta2->execute();
+		$result=$consulta2->get_result();
+		var_dump($result);
+		$id_torneo=array();
+		while($myrow=$result->fetch_assoc()){
+			array_push($id_torneo,$myrow);
+		}
+		$jugadores=range(1,8);
+		shuffle($jugadores);
+		$parejas=array();
+		for($i=0;$i<4;$i++){
+			$parejas[]=array($jugadores[$i*2],$jugadores[$i*2+1]);
+		}
+		$partidos=new PartidoAccesoDatos();
+		for($i=0;$i<count($parejas);$i++){
+				$jugadorA=$parejas[$i][0];
+				$jugadorB=$parejas[$i][1];
+				$partidos->insertar($id_torneo['id_torneo'],$jugadorA,$jugadorB);
+			}
+			return $res;
+		}
 }
 
 
