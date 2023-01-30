@@ -35,11 +35,11 @@ CREATE TABLE T_partidos(
     FOREIGN KEY (id_jugadorB) REFERENCES T_jugadores(id_jugador),
     FOREIGN KEY (id_ganador) REFERENCES T_jugadores(id_jugador)
 );
-
+/*
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran Torneo de la Copa Estrella del Universo','Mushroom Kingdom','2022/12/22',"finalizado","Juanito");
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran Torneo Interestelar de la Copa Pistón de Doc Hudson by Rust Eze','Radiador Springs','2021/06/20',"en curso"," ");
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Campeonato de España Absoluto','Talavera de la Reina','2023/06/25',"Pendiente"," ");
-
+*/
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Fernando','Chui','MO');
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ukhnaagiin','Khürelsükh','MN');
@@ -53,11 +53,13 @@ SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador FROM T_partidos WHERE T_
 
 SELECT * from T_partidos;
 SELECT * from T_jugadores;
+SELECT * from T_torneos;
 
 
 DELETE FROM T_partidos WHERE true;
 DELETE FROM T_torneos WHERE true;
 
+SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';
 /*
 SELECT * FROM T_partidos;
 SELECT * from T_torneos;

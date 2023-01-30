@@ -51,7 +51,7 @@
                     echo "<td>".ucfirst($torneo->getEstado())."</td>";
                     echo "<td id='columnaGanador'>".ucfirst($torneo->getGanador())."</td>";
                     echo "<td><a href='editarTorneosVista.php'>Editar</a></td>";
-                    echo "<td>Borrar</td>";
+                    echo "<td><a href='borrarTorneo.php?torneo=".$torneo->getID()."'>Borrar</a></td>";
                     echo "</tr>";
                 }
             ?>

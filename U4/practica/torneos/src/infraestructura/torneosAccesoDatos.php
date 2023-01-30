@@ -39,16 +39,9 @@ class TorneosAccesoDatos
 		$consulta = mysqli_prepare($conexion, "insert into T_torneos(nombre,fecha,estado,ganador) values (?,?,?,?);");
         $consulta->bind_param("ssss", $nombre,$fecha,$estado,$ganador);
         $res = $consulta->execute();
-        
-
-		$consulta2=mysqli_prepare($conexion,'SELECT T_torneos.id_torneo FROM T_torneos WHERE nombre="'.$nombre.'" AND fecha="'.$fecha.'";');
-		$consulta2->execute();
-		$result=$consulta2->get_result();
-		var_dump($result);
-		$id_torneo=array();
-		while($myrow=$result->fetch_assoc()){
-			array_push($id_torneo,$myrow);
-		}
+		
+		$consulta2=mysqli_prepare($conexion, "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';");
+		$id_torneo=$consulta2->execute();
 		$jugadores=range(1,8);
 		shuffle($jugadores);
 		$parejas=array();
@@ -59,10 +52,23 @@ class TorneosAccesoDatos
 		for($i=0;$i<count($parejas);$i++){
 				$jugadorA=$parejas[$i][0];
 				$jugadorB=$parejas[$i][1];
-				$partidos->insertar($id_torneo['id_torneo'],$jugadorA,$jugadorB);
+				$partidos->insertar($id_torneo,$jugadorA,$jugadorB);
 			}
 			return $res;
 		}
+	
+	function borrar($id_torneo){
+		$conexion = mysqli_connect('localhost','root','12345');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		
+        mysqli_select_db($conexion, 'torneosTenisMesaDB');
+		$consulta = mysqli_prepare($conexion, "DELETE FROM T_torneos WHERE T_torneos.id=(?);");
+        $consulta->bind_param("i", $id_torneo);
+        $res = $consulta->execute();
+	}
 }
 
 
