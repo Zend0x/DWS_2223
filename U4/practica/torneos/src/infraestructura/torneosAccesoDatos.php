@@ -40,8 +40,9 @@ class TorneosAccesoDatos
         $consulta->bind_param("ssss", $nombre,$fecha,$estado,$ganador);
         $res = $consulta->execute();
 		
-		$consulta2=mysqli_prepare($conexion, "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';");
-		$id_torneo=$consulta2->execute();
+		$id_torneo_Query=mysqli_prepare($conexion, "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';");
+		$id_torneo=$id_torneo_Query->execute();
+
 		$jugadores=range(1,8);
 		shuffle($jugadores);
 		$parejas=array();
@@ -63,11 +64,21 @@ class TorneosAccesoDatos
 		{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
+
+
+		ini_set('display_errors', 1);
+		ini_set('html_errors', 1);
+
+		echo "aaa";
  		
         mysqli_select_db($conexion, 'torneosTenisMesaDB');
-		$consulta = mysqli_prepare($conexion, "DELETE FROM T_torneos WHERE T_torneos.id=(?);");
+		$consulta = mysqli_prepare($conexion, "DELETE FROM T_torneos WHERE T_torneos.id_torneo=(?);");
         $consulta->bind_param("i", $id_torneo);
+		$consulta2=mysqli_prepare($conexion,"DELETE FROM T_partidos WHERE T_partidos.id_torneo=(?)");
+		$consulta2->bind_param("i",$id_torneo);
         $res = $consulta->execute();
+
+		return $res;
 	}
 }
 
