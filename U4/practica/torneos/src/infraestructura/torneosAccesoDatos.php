@@ -30,22 +30,20 @@ class TorneosAccesoDatos
 
 	function insertar($nombre,$fecha,$estado,$ganador){
 		$conexion = mysqli_connect('localhost','root','12345');
+        mysqli_select_db($conexion, 'torneosTenisMesaDB');
 		if (mysqli_connect_errno())
 		{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
+		$id_torneo_Query=mysqli_prepare($conexion, "SELECT IFNULL(MAX(id_torneo),0)+1 AS 'id_torneo' FROM T_torneos;");
+		$id_torneo_Query->execute();
+		$result=$id_torneo_Query->get_result();
+		$id_torneo=$result->fetch_assoc();
  		
-        mysqli_select_db($conexion, 'torneosTenisMesaDB');
 		$consulta = mysqli_prepare($conexion, "insert into T_torneos(nombre,fecha,estado,ganador) values (?,?,?,?);");
         $consulta->bind_param("ssss", $nombre,$fecha,$estado,$ganador);
         $res = $consulta->execute();
 		
-		$id_torneo_Query=mysqli_prepare($conexion, "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';");
-		$id_torneo_Query->execute();
-		$result=$id_torneo_Query->get_result();
-		$id_torneo=$result->fetch_assoc();
-		var_dump($id_torneo);
-
 		$jugadores=range(1,8);
 		shuffle($jugadores);
 		$parejas=array();
@@ -57,7 +55,7 @@ class TorneosAccesoDatos
 		for($i=0;$i<count($parejas);$i++){
 				$jugadorA=$parejas[$i][0];
 				$jugadorB=$parejas[$i][1];
-				$partidos->insertar($id_torneo,$jugadorA,$jugadorB);
+				$partidos->insertar($id_torneo["id_torneo"],$jugadorA,$jugadorB);
 			}
 			return $res;
 		}
@@ -76,10 +74,11 @@ class TorneosAccesoDatos
 		echo "aaa";
  		
         mysqli_select_db($conexion, 'torneosTenisMesaDB');
-		$consulta = mysqli_prepare($conexion, "DELETE FROM T_torneos WHERE T_torneos.id_torneo=(?);");
-        $consulta->bind_param("i", $id_torneo);
 		$consulta2=mysqli_prepare($conexion,"DELETE FROM T_partidos WHERE T_partidos.id_torneo=(?)");
 		$consulta2->bind_param("i",$id_torneo);
+		$res2=$consulta2->execute();
+		$consulta = mysqli_prepare($conexion, "DELETE FROM T_torneos WHERE T_torneos.id_torneo=(?);");
+        $consulta->bind_param("i", $id_torneo);
         $res = $consulta->execute();
 
 		return $res;

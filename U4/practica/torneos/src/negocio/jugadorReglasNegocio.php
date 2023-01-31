@@ -1,6 +1,8 @@
 <?php
 
-require("../infraestructura/jugadorAccesoDatos.php");
+require_once("../infraestructura/jugadorAccesoDatos.php");
+// ini_set('display_errors', 1);
+// ini_set('html_errors', 1);
 
 class JugadorReglasNegocio
 {
@@ -44,7 +46,7 @@ class JugadorReglasNegocio
         {
             $oJugadorReglasNegocio = new JugadorReglasNegocio();
             $oJugadorReglasNegocio->Init($jugador['id_jugador'],$jugador['nombre'],$jugador['apellidos'],$jugador['nacionalidad']);
-            array_push($listaTorneos,$oTorneosReglasNegocio);
+            array_push($datosJugador,$oJugadorReglasNegocio);
         }
         return $datosJugador;
     }

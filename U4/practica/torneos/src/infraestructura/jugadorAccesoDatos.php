@@ -1,5 +1,7 @@
 <?php
-require("jugadorAccesoDatos.php");
+require_once("jugadorAccesoDatos.php");
+// ini_set('display_errors', 1);
+// ini_set('html_errors', 1);
 class JugadorAccesoDatos
 {
 	function __construct()

@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('html_errors', 1);
+
 class PartidoAccesoDatos{
 
 	function __construct(){
@@ -28,6 +29,7 @@ class PartidoAccesoDatos{
 		return $partidos;
 	}
 	function insertar($id_torneo,$id_jugadorA,$id_jugadorB){
+		var_dump($id_torneo);
 		$conexion = mysqli_connect('localhost','root','12345');
 		if (mysqli_connect_errno())
 		{
