@@ -49,17 +49,17 @@ INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sac
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
 
-SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador FROM T_partidos WHERE T_partidos.id_torneo=4;
 
-SELECT * from T_partidos;
-SELECT * from T_jugadores;
-SELECT * from T_torneos;
-
+-- SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador FROM T_partidos WHERE T_partidos.id_torneo=4;
+SELECT id_jugador,nombre,apellidos,nacionalidad FROM T_jugadores WHERE id_jugador='1';
+-- SELECT * from T_partidos;
+-- SELECT * from T_jugadores;
+-- SELECT * from T_torneos;
 
 DELETE FROM T_partidos WHERE true;
 DELETE FROM T_torneos WHERE true;
 
-SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';
+-- SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';
 /*
 SELECT * FROM T_partidos;
 SELECT * from T_torneos;

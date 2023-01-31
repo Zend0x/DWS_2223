@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    height: 100%;width: 100%;
+}
+.contenedorGeneral{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(154, 207, 243);
+}
+.topPage{
+    height: 10%;
+    width: 100%;
+}
+.welcome{
+    float: right;
+    margin-right: 1%;
+    margin-top: 1%;
+}
+#textoPrincipal{
+    float:left;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+.centrado{
+    float: left;
+    margin-left: 25%;
+    margin-top: 2%;
+  }

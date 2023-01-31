@@ -41,11 +41,15 @@ class TorneosAccesoDatos
         $res = $consulta->execute();
 		
 		$id_torneo_Query=mysqli_prepare($conexion, "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';");
-		$id_torneo=$id_torneo_Query->execute();
+		$id_torneo_Query->execute();
+		$result=$id_torneo_Query->get_result();
+		$id_torneo=$result->fetch_assoc();
+		var_dump($id_torneo);
 
 		$jugadores=range(1,8);
 		shuffle($jugadores);
 		$parejas=array();
+		
 		for($i=0;$i<4;$i++){
 			$parejas[]=array($jugadores[$i*2],$jugadores[$i*2+1]);
 		}

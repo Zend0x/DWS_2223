@@ -18,7 +18,8 @@
     ?>
     <div class="contenedor"> 
         <div class="topPage">
-            <h1 id="textoPrincipal">Cuadro del torneo [x]</h1>
+            <h1 id="textoPrincipal">Cuadro del torneo <?php echo $_GET['torneo'] ?></h1>
+            <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a>
             <div class="welcome">
                 <?php 
                     echo "Bienvenido, ".$_SESSION['username']; 
@@ -38,46 +39,27 @@
                     <?php
                         for($i=0;$i<count($datosPartidos);$i++){
                             echo '<li class="spacer">&nbsp;</li>        
-                            <li class="game game-top">'.$datosPartidos['id_jugadorA'].'</li>
+                            <li class="game game-top"><a href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorA().'">'.$datosPartidos[$i]->getJugadorA().'</a></li>
                             <li class="game game-spacer">&nbsp;</li>
-                            <li class="game game-bottom ">'.$datosPartidos['id_jugadorB'].'</li>';
+                            <li class="game game-bottom"><a href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorB().'">'.$datosPartidos[$i]->getJugadorB().'</a></li>';
                         }
                     ?>
-                    <li class="spacer">&nbsp;</li>        
-                    <li class="game game-top">Jugador1</li>
-                    <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">Jugador2</li>
-
-                    <li class="spacer">&nbsp;</li>
-                    <li class="game game-top winner">Jugador3</li>
-                    <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">Jugador4</li>
-
-                    <li class="spacer">&nbsp;</li>
-                    <li class="game game-top winner">Jugador5</li>
-                    <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">Jugador6</li>
-                    
-                    <li class="spacer">&nbsp;</li>
-                    <li class="game game-top winner">Jugador7</li>
-                    <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">Jugador8</li>
                     <li class="spacer">&nbsp;</li>
                 </ul>
                 <ul class="round ronda2">
                     <li class="spacer">&nbsp;</li>
-                    <li class="game game-top winner">Jugador1</li>
+                    <li class="game game-top">Jugador1</li>
                     <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">Jugador 3</li>
+                    <li class="game game-bottom">Jugador 3</li>
                     <li class="spacer">&nbsp;</li>
-                    <li class="game game-top winner">Jugador5</li>
+                    <li class="game game-top ">Jugador5</li>
                     <li class="game game-spacer">&nbsp;</li>
                     <li class="game game-bottom ">Jugador7</li>
                     <li class="spacer">&nbsp;</li>
                 </ul>
                 <ul class="round ronda3">
                     <li class="spacer">&nbsp;</li>
-                    <li class="game game-top winner">Jugadro1</li>
+                    <li class="game game-top">Jugadro1</li>
                     <li class="game game-spacer">&nbsp;</li>
                     <li class="game game-bottom ">Jugador5</li>
                     <li class="spacer">&nbsp;</li>
