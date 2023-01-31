@@ -37,6 +37,7 @@ CREATE TABLE T_partidos(
 );
 /*
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran Torneo de la Copa Estrella del Universo','Mushroom Kingdom','2022/12/22',"finalizado","Juanito");
+/*
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Gran Torneo Interestelar de la Copa Pistón de Doc Hudson by Rust Eze','Radiador Springs','2021/06/20',"en curso"," ");
 insert into T_torneos(nombre,localizacion,fecha,estado,ganador) VALUES ('Campeonato de España Absoluto','Talavera de la Reina','2023/06/25',"Pendiente"," ");
 */
@@ -50,16 +51,27 @@ INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sac
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
 
 
--- SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador FROM T_partidos WHERE T_partidos.id_torneo=4;
-SELECT id_jugador,nombre,apellidos,nacionalidad FROM T_jugadores WHERE id_jugador='1';
--- SELECT * from T_partidos;
+SELECT id_partido, CONCAT_WS(' ',T_jugadores.nombre,T_jugadores.apellidos) as 'nombreJugadorA', id_ganador 
+FROM T_partidos 
+INNER JOIN T_jugadores ON T_partidos.id_jugadorA = T_jugadores.id_jugador
+WHERE id_jugadorA=3;
+-- SELECT id_jugador,nombre,apellidos,nacionalidad FROM T_jugadores WHERE id_jugador='1';
+SELECT * from T_partidos;
 -- SELECT * from T_jugadores;
 -- SELECT * from T_torneos;
+
+
+SELECT IFNULL(MAX(id_torneo),0)+1 AS 'id_torneo' FROM T_torneos;
 
 DELETE FROM T_partidos WHERE true;
 DELETE FROM T_torneos WHERE true;
 
 -- SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'T_torneos';
+
+/*
+INSERT INTO T_torneos(nombre,fecha,estado)VALUES("Copa guay","2023-01-31","Finalizado");
+
+INSERT INTO T_partidos(id_torneo,id_jugadorA,id_jugadorB) VALUES (1,1,2);
 /*
 SELECT * FROM T_partidos;
 SELECT * from T_torneos;
