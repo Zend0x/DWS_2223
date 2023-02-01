@@ -46,19 +46,30 @@ INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Fernando','Chui','
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ukhnaagiin','Khürelsükh','MN');
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Alfonso','el Africano','ES');
 INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
-INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
-INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
-INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Ildefonso','de Sacristán','ES');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Alfonso','Luján','ES');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Nasruddin','Khan','UZ');
+INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Kong','Linghui','CN');
 
-
+<<<<<<< HEAD
 SELECT id_partido, CONCAT_WS(' ',T_jugadores.nombre,T_jugadores.apellidos) as 'nombreJugadorA', id_ganador 
 FROM T_partidos 
 INNER JOIN T_jugadores ON T_partidos.id_jugadorA = T_jugadores.id_jugador
 WHERE id_jugadorA=3;
+=======
+-- SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador FROM T_partidos WHERE T_partidos.id_torneo=4;
+>>>>>>> 0ce14d326e1196eb7b9a70f59e1b05d2828677b7
 -- SELECT id_jugador,nombre,apellidos,nacionalidad FROM T_jugadores WHERE id_jugador='1';
 SELECT * from T_partidos;
 -- SELECT * from T_jugadores;
 -- SELECT * from T_torneos;
+/*
+SELECT id_jugador,nombre,apellidos,nacionalidad,(SELECT COUNT(id_partido) FROM T_partidos where id_jugadorA=1 OR id_jugadorB=1) as partidosJugados,
+(SELECT COUNT(DISTINCT(id_torneo)) FROM T_partidos where id_jugadorA=1 OR id_jugadorB=1) as torneosJugados,
+(SELECT COUNT(id_partido) FROM T_partidos where id_ganador=1) as partidosGanados,
+(SELECT COUNT(DISTINCT(id_torneo)) FROM T_torneos WHERE T_torneos.ganador=1) as torneosGanados
+FROM T_jugadores WHERE id_jugador='1';
+*/
+-- SELECT COUNT(id_partido) FROM T_partidos where id_jugadorA=1 OR id_jugadorB=1;
 
 
 SELECT IFNULL(MAX(id_torneo),0)+1 AS 'id_torneo' FROM T_torneos;

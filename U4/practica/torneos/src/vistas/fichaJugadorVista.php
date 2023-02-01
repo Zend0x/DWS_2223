@@ -34,12 +34,12 @@
                 $jugadorBL=new JugadorReglasNegocio();
                 $datosJugador=$jugadorBL->obtener($_GET['id']);
             ?>
-            <h3>Ficha de <?php echo $datosJugador[0]->getNombre().' '.$datosJugador[0]->getApellidos(); ?></h3>
-            <p class="izquierda">Total de partidos jugados:</p><p class="derecha">X</p><br>
-            <p class="izquierda">Partidos ganados:</p><p class="derecha">X</p><br>
-            <p class="izquierda">Porcentaje victorias:</p><p class="derecha">X</p><br>
-            <p class="izquierda">Torneos disputados:</p><p class="derecha">X</p><br>
-            <p class="izquierda">Torneos ganados:</p><p class="derecha">X</p><br>
+            <h3 class="fichaDe">Ficha de <?php echo $datosJugador[0]->getNombre().' '.$datosJugador[0]->getApellidos(); ?></h3>
+            <p class="izquierda">Total de partidos jugados:</p><p class="derecha"><?php echo $datosJugador[0]->getpartidosJugados() ?></p><br>
+            <p class="izquierda">Partidos ganados:</p><p class="derecha"><?php echo $datosJugador[0]->getPartidosGanados() ?></p><br>
+            <p class="izquierda">Porcentaje victorias:</p><p class="derecha"><?php echo ($datosJugador[0]->getPartidosGanados()/$datosJugador[0]->getpartidosJugados())*100 ?></p><br>
+            <p class="izquierda">Torneos disputados:</p><p class="derecha"><?php echo $datosJugador[0]->getTorneosJugados() ?></p><br>
+            <p class="izquierda">Torneos ganados:</p><p class="derecha"><?php echo $datosJugador[0]->getTorneosGanados() ?></p><br>
         </div>
     </div>
 </body>
