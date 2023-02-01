@@ -10,17 +10,25 @@ class JugadorReglasNegocio
     private $_NOMBRE;
     private $_APELLIDOS;
     private $_NACIONALIDAD;
+    private $_PARTIDOSJUGADOS;
+    private $_PARTIDOSGANADOS;
+    private $_TORNEOSJUGADOS;
+    private $_TORNEOSGANADOS;
 
 	function __construct()
     {
     }
 
-    function init($id,$nombre,$apellidos,$nacionalidad)
+    function init($id,$nombre,$apellidos,$nacionalidad,$partidosJugados,$partidosGanados,$torneosJugados,$torneosGanados)
     {
         $this->_ID = $id;
         $this->_NOMBRE=$nombre;
         $this->_APELLIDOS=$apellidos;
         $this->_NACIONALIDAD=$nacionalidad;
+        $this->_PARTIDOSJUGADOS=$partidosJugados;
+        $this->_PARTIDOSGANADOS=$partidosGanados;
+        $this->_TORNEOSJUGADOS=$torneosJugados;
+        $this->_TORNEOSGANADOS=$torneosGanados;
     }
 
     function getID(){
@@ -35,6 +43,18 @@ class JugadorReglasNegocio
     function getNacionalidad(){
         return $this->_NACIONALIDAD;
     }
+    function getPartidosJugados(){
+        return $this->_PARTIDOSJUGADOS;
+    }
+    function getPartidosGanados(){
+        return $this->_PARTIDOSGANADOS;
+    }
+    function getTorneosJugados(){
+        return $this->_TORNEOSJUGADOS;
+    }
+    function getTorneosGanados(){
+        return $this->_TORNEOSGANADOS;
+    }
 
     function obtener($id_jugador){
         $jugadorDAL = new JugadorAccesoDatos();
@@ -45,7 +65,8 @@ class JugadorReglasNegocio
         foreach ($rs as $jugador)
         {
             $oJugadorReglasNegocio = new JugadorReglasNegocio();
-            $oJugadorReglasNegocio->Init($jugador['id_jugador'],$jugador['nombre'],$jugador['apellidos'],$jugador['nacionalidad']);
+            $oJugadorReglasNegocio->Init($jugador['id_jugador'],$jugador['nombre'],$jugador['apellidos'],$jugador['nacionalidad'],$jugador['partidosJugados'],
+                                         $jugador['partidosGanados'],$jugador['torneosJugados'],$jugador['torneosGanados']);
             array_push($datosJugador,$oJugadorReglasNegocio);
         }
         return $datosJugador;
