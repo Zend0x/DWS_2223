@@ -4,41 +4,57 @@
     class PartidoReglasNegocio{
 
         private $_ID;
-        private $jugadorA;
-        private $jugadorB;
-        private $ganadorPartido;
+        private $_JUGADORA;
+        private $_NOMBREJUGADORA;
+        private $_JUGADORB;
+        private $_NOMBREJUGADORB;
+        private $_GANADORPARTIDO;
+        private $_RONDATORNEO;
 
         function __construct(){
             
         }
 
-        function init($id,$jugadorA,$jugadorB,$ganadorPartido){
+        function init($id,$jugadorA,$nombreJugadorA,$jugadorB,$nombreJugadorB,$ganadorPartido,$rondaTorneo){
             $this->_ID=$id;
-            $this->jugadorA=$jugadorA;
-            $this->jugadorB=$jugadorB;
-            $this->ganadorPartido=$ganadorPartido;
+            $this->_JUGADORA=$jugadorA;
+            $this->_NOMBREJUGADORA=$nombreJugadorA;
+            $this->_JUGADORB=$jugadorB;
+            $this->_NOMBREJUGADORB=$nombreJugadorB;
+            $this->_GANADORPARTIDO=$ganadorPartido;
+            $this->_RONDATORNEO=$rondaTorneo;
         }
         function getID(){
             return $this->_ID;
         }
         function getJugadorA(){
-            return $this->jugadorA;
+            return $this->_JUGADORA;
+        }
+        function getNombreJugadorA(){
+            return $this->_NOMBREJUGADORA;
         }
         function getJugadorB(){
-            return $this->jugadorB;
+            return $this->_JUGADORB;
+        }
+        function getNombreJugadorB(){
+            return $this->_NOMBREJUGADORB;
         }
         function getGanador(){
-            return $this->ganadorPartido;
+            return $this->_GANADORPARTIDO;
+        }
+        function getRondaTorneo(){
+            return $this->_RONDATORNEO;
         }
 
-        function obtener(){
+        function obtener($id_torneo){
             $accesoDatosPartido=new PartidoAccesoDatos();
-            $resultado=$accesoDatosPartido->obtener();
+            $resultado=$accesoDatosPartido->obtener($id_torneo);
 
             $listadoPartidos=array();
             foreach($resultado as $partido){
                 $partidoReglasNegocio=new PartidoReglasNegocio();
-                $partidoReglasNegocio->init($partido['id_partido'],$partido['id_jugadorA'],$partido['id_jugadorB'],$partido['id_ganador']);
+                $partidoReglasNegocio->init($partido['id_partido'],$partido['id_jugadorA'],$partido['nombreJugadorA'],$partido['id_jugadorB'],$partido['nombreJugadorB'],
+                                            $partido['id_ganador'],$partido['rondaTorneo']);
                 array_push($listadoPartidos,$partidoReglasNegocio);
             }
             return $listadoPartidos;

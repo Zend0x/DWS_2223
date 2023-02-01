@@ -63,7 +63,13 @@ main{
 }
 
 li.game{
-  padding-left:20px;
+  padding-left:12px;
+}
+.botonEditar{
+  float: right;
+}
+.nombreJugador{
+  float: left;
 }
 
 li.game.winner{

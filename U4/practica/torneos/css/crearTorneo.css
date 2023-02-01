@@ -24,6 +24,9 @@ body,html{
     margin-left: 1%;
     margin-top: 1%;
 }
+.centrado{
+    margin-left: 25%;
+}
 .formularioDatosTorneo{
     height: 50%;
     width: 20%;

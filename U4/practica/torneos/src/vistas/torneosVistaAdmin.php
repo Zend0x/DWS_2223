@@ -37,7 +37,6 @@
                 <th>ID</th>
                 <th>Nombre del torneo</th>
                 <th>Fecha</th>
-                <th>Estado</th>
                 <th>Campeón</th>
                 <th colspan=2> </th>
             </tr>
@@ -48,7 +47,6 @@
                     echo "<td id='columnaID'>".$torneo->getID()."</td>";
                     echo "<td id='nombreTorneo'><a id='textoNombre' href='cuadroVista.php?torneo=".$torneo->getID()."'>".$torneo->getNombre()."</a></td>";
                     echo "<td id='columnaFecha'>".$torneo->getFecha()."</td>";
-                    echo "<td>".ucfirst($torneo->getEstado())."</td>";
                     echo "<td id='columnaGanador'>".ucfirst($torneo->getGanador())."</td>";
                     echo "<td><a href='editarTorneosVista.php'>Editar</a></td>";
                     echo "<td><a href='borrarTorneo.php?torneo=".$torneo->getID()."'>Borrar</a></td>";

@@ -1,0 +1,70 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body,html{
+  height: 100%;width: 100%;
+}
+.contenedor{
+  height: 100%;
+  width: 100%;
+  background-color: rgb(154, 207, 243);
+}
+.topPage{
+  height: 10%;
+  width: 100%;
+}
+.welcome{
+  float: right;
+  margin-right: 1%;
+  margin-top: 1%;
+}
+#textoPrincipal{
+  float:left;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+.centrado{
+  margin-left: 30%;
+}
+
+.tablaTorneos{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tablaTorneos td, .tablaTorneos th{
+  border: 1px solid rgb(136, 136, 136);
+  padding: 7px;
+}
+
+.tablaTorneos tr:nth-child(odd){
+  background-color: rgb(229, 248, 255);
+}
+.tablaTorneos tr:nth-child(even){
+  background-color: rgb(212, 231, 236);
+}
+
+.tablaTorneos th{
+  padding-top:12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(1, 125, 197);
+  color:white;
+}
+#columnaID, #rondaTorneo,#editar,#borrar{
+  text-align: center;
+}
+#textoNombre:link,#textoNombre:visited,#textoNombre:active{
+  text-decoration: none;
+  color: black;
+}
+#cantidadTorneos{
+  color: rgb(4, 111, 182);
+  text-align: right;
+}
+#editar,#editar:visited,#borrar,#borrar:visited{
+  color: blue;
+}

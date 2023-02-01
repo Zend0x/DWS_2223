@@ -14,7 +14,7 @@ class TorneosAccesoDatos
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
  		mysqli_select_db($conexion, 'torneosTenisMesaDB');
-		$consulta = mysqli_prepare($conexion, "SELECT id_torneo, nombre,fecha,localizacion,estado,ganador FROM T_torneos GROUP BY id_torneo");
+		$consulta = mysqli_prepare($conexion, "SELECT id_torneo, nombre,fecha,localizacion,ganador FROM T_torneos GROUP BY id_torneo");
         $consulta->execute();
         $result = $consulta->get_result();
 
@@ -28,7 +28,7 @@ class TorneosAccesoDatos
 		return $torneos;
 	}
 
-	function insertar($nombre,$fecha,$estado,$ganador){
+	function insertar($nombre,$fecha,$ganador){
 		$conexion = mysqli_connect('localhost','root','12345');
         mysqli_select_db($conexion, 'torneosTenisMesaDB');
 		if (mysqli_connect_errno())
@@ -40,8 +40,8 @@ class TorneosAccesoDatos
 		$result=$id_torneo_Query->get_result();
 		$id_torneo=$result->fetch_assoc();
  		
-		$consulta = mysqli_prepare($conexion, "insert into T_torneos(nombre,fecha,estado,ganador) values (?,?,?,?);");
-        $consulta->bind_param("ssss", $nombre,$fecha,$estado,$ganador);
+		$consulta = mysqli_prepare($conexion, "insert into T_torneos(nombre,fecha,ganador) values (?,?,?);");
+        $consulta->bind_param("sss", $nombre,$fecha,$ganador);
         $res = $consulta->execute();
 		
 		$jugadores=range(1,8);

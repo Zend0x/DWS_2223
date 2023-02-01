@@ -28,7 +28,7 @@
 
 
                     $partidoBL = new PartidoReglasNegocio();
-                    $datosPartidos = $partidoBL->obtener();
+                    $datosPartidos = $partidoBL->obtener($_GET['torneo']);
                 ?>
                 <a href="logout.php"> Cerrar sesión </a><br>
             </div>
@@ -39,22 +39,22 @@
                     <?php
                         for($i=0;$i<count($datosPartidos);$i++){
                             echo '<li class="spacer">&nbsp;</li>        
-                            <li class="game game-top"><a href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorA().'">'.$datosPartidos[$i]->getJugadorA().'</a></li>
+                            <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorA().'">'.$datosPartidos[$i]->getNombreJugadorA().'</a><a class="botonEditar" href="gestionTorneosVista.php?partido='.$datosPartidos[$i]->getID().'&torneo='.$_GET['torneo'].'">Editar</a></li>
                             <li class="game game-spacer">&nbsp;</li>
-                            <li class="game game-bottom"><a href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorB().'">'.$datosPartidos[$i]->getJugadorB().'</a></li>';
+                            <li class="game game-bottom"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorB().'">'.$datosPartidos[$i]->getNombreJugadorB().'</a></li>';
                         }
                     ?>
                     <li class="spacer">&nbsp;</li>
                 </ul>
                 <ul class="round ronda2">
-                    <li class="spacer">&nbsp;</li>
-                    <li class="game game-top">Jugador1</li>
-                    <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom">Jugador 3</li>
-                    <li class="spacer">&nbsp;</li>
-                    <li class="game game-top ">Jugador5</li>
-                    <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">Jugador7</li>
+                    <?php 
+                    for($i=0;$i<2;$i++){
+                        echo '<li class="spacer">&nbsp;</li>
+                            <li class="game game-top">Jugador1</li>
+                            <li class="game game-spacer">&nbsp;</li>
+                            <li class="game game-bottom">Jugador 3</li>';
+                    }
+                    ?>
                     <li class="spacer">&nbsp;</li>
                 </ul>
                 <ul class="round ronda3">

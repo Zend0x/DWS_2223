@@ -16,7 +16,7 @@
         }
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $torneoDA=new TorneosAccesoDatos();
-            $torneoDA->insertar($_POST['nombreTorneo'],$_POST['fechaTorneo'],$_POST['estadoTorneo'],$_POST['ganador']);
+            $torneoDA->insertar($_POST['nombreTorneo'],$_POST['fechaTorneo'],$_POST['ganador']);
 
             header("Location: torneosVistaAdmin.php");
         }
@@ -26,6 +26,7 @@
     <div class="contenedorGeneral">
         <div class="topPage">
             <h1 id="textoPrincipal">Creación de un nuevo torneo</h1>
+            <a href="torneosVistaAdmin.php" class="centrado">Volver al inicio</a>
             <div class="welcome">
                 <?php 
                     echo "Bienvenido, ".$_SESSION['username']; 
@@ -45,10 +46,6 @@
                 <input type="text" name="nombreTorneo"><br>
                 <label for="fechaTorneo">Fecha torneo:</label><br>
                 <input type="date" name="fechaTorneo"><br>
-                <input type="radio" name="estadoTorneo" id="enprogreso" value="En progreso">
-                <label for="enprogreso">En progreso</label><br>
-                <input type="radio" name="estadoTorneo" id="finalizado" value="Finalizado">
-                <label for="finalizado">Finalizado</label><br>
                 <label for="fechaTorneo">Ganador</label><br>
                 <input type="text" name="ganador"><br>
                 <input type="submit" value="Submit">
