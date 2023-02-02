@@ -24,7 +24,7 @@ CREATE TABLE T_torneos(
 );
 
 CREATE TABLE T_partidos(
-	id_partido int(6),
+	id_partido int(6) not null auto_increment,
     id_torneo int(5),
     id_jugadorA int(6),
     id_jugadorB int(6),
@@ -67,7 +67,7 @@ SELECT id_jugador,nombre,apellidos,nacionalidad,(SELECT COUNT(id_partido) FROM T
 (SELECT COUNT(DISTINCT(id_torneo)) FROM T_torneos WHERE T_torneos.ganador=1) as torneosGanados
 FROM T_jugadores WHERE id_jugador='1';
 */
-/*
+
 SELECT id_partido, id_jugadorA, id_jugadorB, IFNULL(id_ganador,' ') as id_ganador, rondaTorneo, 
 		(SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_jugadorA) as 'nombreJugadorA',
 		(SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_jugadorB) AS 'nombreJugadorB'
@@ -75,9 +75,12 @@ SELECT id_partido, id_jugadorA, id_jugadorB, IFNULL(id_ganador,' ') as id_ganado
 		WHERE T_partidos.id_torneo=1;
         
 -- SELECT COUNT(id_partido) FROM T_partidos where id_jugadorA=1 OR id_jugadorB=1;
-*/
+
 DELETE FROM T_partidos WHERE true;
 DELETE FROM T_torneos WHERE true;
+
+-- SELECT IFNULL(MAX(id_partido)+1,1) as proximoPartido FROM T_partidos WHERE id_torneo=1;
+
 /*
 SELECT id_partido, id_jugadorA, id_jugadorB, IFNULL(id_ganador,' ') as id_ganador, 
 (SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_jugadorA) as 'nombreJugadorA',
