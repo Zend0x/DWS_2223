@@ -52,7 +52,7 @@ INSERT INTO T_jugadores(nombre,apellidos,nacionalidad)VALUES('Kong','Linghui','C
 
 -- SELECT id_partido, id_jugadorA, id_jugadorB, id_ganador FROM T_partidos WHERE T_partidos.id_torneo=4;
 -- SELECT id_jugador,nombre,apellidos,nacionalidad FROM T_jugadores WHERE id_jugador='1';
-SELECT * from T_partidos;
+SELECT * from T_partidos ORDER BY id_torneo;
 -- SELECT * from T_jugadores;
 -- SELECT * from T_torneos;
 
