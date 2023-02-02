@@ -10,6 +10,15 @@
 </head>
 
 <body>
+    <?php
+        session_start(); // reanudamos la sesión
+        if (!isset($_SESSION['username']))
+        {
+            header("Location: loginVista.php");
+        }else if($_SESSION['userType']!="admin"){
+            header("Location: cuadroVista.php");
+        }
+    ?>
     <div class="contenedor">
         <div class="topPage">
             <h1 id="textoPrincipal">Edición del partido <?php echo $_GET['partido'] ?></h1>
@@ -40,16 +49,14 @@
             <?php
                 foreach ($datosPartidos as $partido)
                 {
-                    var_dump($partido->getGanador());
                     echo "<tr>";
-                    echo "<td id='columnaID'>".$partido->getID()."</td>";
-                    echo "<td id='nombreJugadorA'>".$partido->getNombreJugadorA()."</td>";
-                    echo "<td id='nombreJugadorB'>".$partido->getNombreJugadorB()."</td>";
-                    echo "<td id='rondaTorneo'>".ucfirst($partido->getRondaTorneo())."</td>";
-                    echo "<td id='ganadorPartido'".$partido->getGanador();"</td>";
-                    echo "<td></td>";
-                    echo "<td id='editar'><a href='editarTorneosVista.php'>Editar</a></td>";
-                    echo "<td id='borrar'><a href='borrarTorneo.php?torneo=".$partido->getID()."'>Borrar</a></td>";
+                        echo "<td id='columnaID'>".$partido->getID()."</td>";
+                        echo "<td id='nombreJugadorA'>".$partido->getNombreJugadorA()."</td>";
+                        echo "<td id='nombreJugadorB'>".$partido->getNombreJugadorB()."</td>";
+                        echo "<td id='rondaTorneo'>".ucfirst($partido->getRondaTorneo())."</td>";
+                        echo "<td id='ganadorPartido'>".$partido->getNombreGanador();"</td>";
+                        echo "<td id='editar'><a href='editarTorneosVista.php'>Editar</a></td>";
+                        echo "<td id='borrar'><a href='borrarTorneo.php?torneo=".$partido->getID()."'>Borrar</a></td>";
                     echo "</tr>";
                 }
             ?>

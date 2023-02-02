@@ -54,7 +54,7 @@ body,html{
   background-color: rgb(1, 125, 197);
   color:white;
 }
-#columnaID, #rondaTorneo,#editar,#borrar{
+#columnaID, #rondaTorneo,#editar,#borrar,#ganadorPartido{
   text-align: center;
 }
 #textoNombre:link,#textoNombre:visited,#textoNombre:active{

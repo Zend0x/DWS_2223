@@ -39,7 +39,7 @@
                     <?php
                         for($i=0;$i<count($datosPartidos);$i++){
                             echo '<li class="spacer">&nbsp;</li>        
-                            <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$datosPartidos[$i]->getNombreJugadorA().'</a></li>
+                            <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$datosPartidos[$i]->getNombreJugadorA().'</a><a class="botonEditar" href="gestionTorneosVista.php?partido='.$datosPartidos[$i]->getID().'&torneo='.$_GET['torneo'].'">Editar</a></li>
                             <li class="game game-spacer">&nbsp;</li>
                             <li class="game game-bottom"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorB().'">'.$datosPartidos[$i]->getNombreJugadorB().'</a></li>';
                         }

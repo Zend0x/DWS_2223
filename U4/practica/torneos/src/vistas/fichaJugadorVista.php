@@ -15,11 +15,20 @@
             header("Location: loginVista.php");
         }
         require_once("../negocio/jugadorReglasNegocio.php");
+
+        $emoji_flags = array();
+        $emoji_flags["UZ"] = "\u{1F1FA}\u{1F1FF}";
+        $emoji_flags["ES"] = "\u{1F1EA}\u{1F1F8}";
+        $emoji_flags["MN"] = "\u{1F1F2}\u{1F1F3}";
+        $emoji_flags["CN"] = "\u{1F1E8}\u{1F1F3}";
+        $emoji_flags["MO"] = "\u{1F1F2}\u{1F1F4}";
+        $emoji_flags["TW"] = "\u{1F1F9}\u{1F1FC}";
     ?>
     <div class="contenedor"> 
         <div class="topPage">
             <h1 id="textoPrincipal">Ficha de <?php echo $_GET['id'] ?></h1>
             <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a>
+            <a class="centrado" href="cuadroVista.php?torneo=<?php echo $_GET['torneo']?>" >Volver al cuadro</a>
             <div class="welcome">
                 <?php
                     echo "Bienvenido, ".$_SESSION['username']; 
@@ -35,6 +44,7 @@
                 $datosJugador=$jugadorBL->obtener($_GET['id']);
             ?>
             <h3 class="fichaDe">Ficha de <?php echo $datosJugador[0]->getNombre().' '.$datosJugador[0]->getApellidos(); ?></h3>
+            <h4><?php echo $emoji_flags[$datosJugador[0]->getNacionalidad()]?></h4>
             <p class="izquierda">Total de partidos jugados:</p><p class="derecha"><?php echo $datosJugador[0]->getpartidosJugados() ?></p><br>
             <p class="izquierda">Partidos ganados:</p><p class="derecha"><?php echo $datosJugador[0]->getPartidosGanados() ?></p><br>
             <p class="izquierda">Porcentaje victorias:</p><p class="derecha"><?php echo ($datosJugador[0]->getPartidosGanados()/$datosJugador[0]->getpartidosJugados())*100 ?></p><br>

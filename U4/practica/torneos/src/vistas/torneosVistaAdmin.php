@@ -10,6 +10,8 @@
         if (!isset($_SESSION['username']))
         {
             header("Location: loginVista.php");
+        }else if($_SESSION['userType']!="admin"){
+            header("Location: torneosVistaUsuario.php");
         }
     ?>
 
@@ -45,7 +47,7 @@
                 {
                     echo "<tr>";
                     echo "<td id='columnaID'>".$torneo->getID()."</td>";
-                    echo "<td id='nombreTorneo'><a id='textoNombre' href='cuadroVista.php?torneo=".$torneo->getID()."'>".$torneo->getNombre()."</a></td>";
+                    echo "<td id='nombreTorneo'><a id='textoNombre' href='cuadroVistaAdmin.php?torneo=".$torneo->getID()."'>".$torneo->getNombre()."</a></td>";
                     echo "<td id='columnaFecha'>".$torneo->getFecha()."</td>";
                     echo "<td id='columnaGanador'>".ucfirst($torneo->getGanador())."</td>";
                     echo "<td><a href='editarTorneosVista.php'>Editar</a></td>";

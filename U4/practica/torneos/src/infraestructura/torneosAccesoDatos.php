@@ -55,7 +55,7 @@ class TorneosAccesoDatos
 		for($i=0;$i<count($parejas);$i++){
 				$jugadorA=$parejas[$i][0];
 				$jugadorB=$parejas[$i][1];
-				$partidos->insertar($id_torneo["id_torneo"],$jugadorA,$jugadorB);
+				$partidos->insertar($i+1,$id_torneo["id_torneo"],$jugadorA,$jugadorB,"cuartos");
 			}
 			return $res;
 		}

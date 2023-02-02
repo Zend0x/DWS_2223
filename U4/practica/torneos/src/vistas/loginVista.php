@@ -12,10 +12,12 @@
             if ($perfil==="administrador"){
                 session_start(); //inicia o reinicia una sesión
                 $_SESSION['username'] = $_POST['username'];
+                $_SESSION['userType']="admin";
                 header("Location: torneosVistaAdmin.php");
             }else if($perfil==="jugador"){
                 session_start(); //inicia o reinicia una sesión
                 $_SESSION['username'] = $_POST['username'];
+                $_SESSION['userType']="player";
                 header("Location: torneosVistaUsuario.php");
             }else{
                 $error = true;
