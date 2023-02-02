@@ -63,6 +63,7 @@
                 </ul>
                 <ul class="round ronda3">
                     <?php
+                    //ToDo cambiar el bracket + revisar condiciones de imprimir de la DB o hardcodeado
                         foreach($datosPartidos as $partidos){
                             if($partidos->getRondaTorneo()!="null"&&$partidos->getRondaTorneo()=="final"){
                                 echo '<li class="spacer">&nbsp;</li>
@@ -70,13 +71,6 @@
                                 <li class="game game-spacer">&nbsp;</li>
                                 <li class="game game-bottom ">'.$partidos->getNombreJugadorB().'</li>
                                 <li class="spacer">&nbsp;</li>';
-                            }else{
-                                echo '<li class="spacer">&nbsp;</li>
-                                <li class="game game-top">Ganador semi 1</li>
-                                <li class="game game-spacer">&nbsp;</li>
-                                <li class="game game-bottom ">Ganador semi 2</li>
-                                <li class="spacer">&nbsp;</li>';
-                                break;
                             }
                         }
                     ?>
