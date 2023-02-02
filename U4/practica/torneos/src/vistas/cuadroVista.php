@@ -37,11 +37,11 @@
             <main id="tournament">
                 <ul class="round ronda1">
                     <?php
-                        for($i=0;$i<count($datosPartidos);$i++){
+                        for($i=0;$i<4;$i++){
                             echo '<li class="spacer">&nbsp;</li>        
                             <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$datosPartidos[$i]->getNombreJugadorA().'</a></li>
                             <li class="game game-spacer">&nbsp;</li>
-                            <li class="game game-bottom"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorB().'">'.$datosPartidos[$i]->getNombreJugadorB().'</a></li>';
+                            <li class="game game-bottom"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorB().'&torneo='.$_GET['torneo'].'">'.$datosPartidos[$i]->getNombreJugadorB().'</a></li>';
                         }
                     ?>
                     <li class="spacer">&nbsp;</li>

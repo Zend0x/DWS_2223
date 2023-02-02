@@ -33,16 +33,17 @@ class PartidoAccesoDatos{
         }
 		return $partidos;
 	}
-	function insertar($id_partido,$id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo){
+	function insertar($id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo){
+		var_dump($id_torneo);
 		$conexion = mysqli_connect('localhost','root','12345');
 		if (mysqli_connect_errno())
 		{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
- 		
+
         mysqli_select_db($conexion, 'torneosTenisMesaDB');
 		$consulta = mysqli_prepare($conexion, "insert into T_partidos(id_partido,id_torneo,id_jugadorA,id_jugadorB,rondaTorneo) values (?,?,?,?,?);");
-        $consulta->bind_param("iiiis",$id_partido,$id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo);
+        $consulta->bind_param("iiiis",$proximoPartido,$id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo);
         $res = $consulta->execute();
         
 		return $res;

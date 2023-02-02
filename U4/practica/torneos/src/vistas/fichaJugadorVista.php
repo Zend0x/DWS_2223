@@ -28,7 +28,7 @@
         <div class="topPage">
             <h1 id="textoPrincipal">Ficha de <?php echo $_GET['id'] ?></h1>
             <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a>
-            <a class="centrado" href="cuadroVista.php?torneo=<?php echo $_GET['torneo']?>" >Volver al cuadro</a>
+            <a class="centrado" href="cuadroVistaAdmin.php?torneo=<?php echo $_GET['torneo']?>" >Volver al cuadro</a>
             <div class="welcome">
                 <?php
                     echo "Bienvenido, ".$_SESSION['username']; 

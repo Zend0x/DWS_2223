@@ -37,32 +37,50 @@
             <main id="tournament">
                 <ul class="round ronda1">
                     <?php
-                        for($i=0;$i<count($datosPartidos);$i++){
-                            echo '<li class="spacer">&nbsp;</li>        
-                            <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$datosPartidos[$i]->getNombreJugadorA().'</a><a class="botonEditar" href="gestionTorneosVista.php?partido='.$datosPartidos[$i]->getID().'&torneo='.$_GET['torneo'].'">Editar</a></li>
-                            <li class="game game-spacer">&nbsp;</li>
-                            <li class="game game-bottom"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$datosPartidos[$i]->getJugadorB().'">'.$datosPartidos[$i]->getNombreJugadorB().'</a></li>';
+                        foreach($datosPartidos as $partidos){
+                            if($partidos->getRondaTorneo()=="cuartos"){
+                                echo '<li class="spacer">&nbsp;</li>        
+                                <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$partidos->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorA().'</a><a class="botonEditar" href="gestionTorneosVista.php?partido='.$partidos->getID().'&torneo='.$_GET['torneo'].'">Editar</a></li>
+                                <li class="game game-spacer">&nbsp;</li>
+                                <li class="game game-bottom"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$partidos->getJugadorB().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorB().'</a></li>';
+                            } 
                         }
                     ?>
                     <li class="spacer">&nbsp;</li>
                 </ul>
                 <ul class="round ronda2">
                     <?php 
-                    for($i=0;$i<2;$i++){
-                        echo '<li class="spacer">&nbsp;</li>
-                            <li class="game game-top">Jugador1</li>
+                    foreach($datosPartidos as $partidos){
+                        if($partidos->getRondaTorneo()!="null"&&$partidos->getRondaTorneo()=="semis"){
+                            echo '<li class="spacer">&nbsp;</li>
+                            <li class="game game-top"><a href="fichaJugadorVista.php?id='.$partidos->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorA().'<a class="botonEditar" href="gestionTorneosVista.php?partido='.$partidos->getID().'&torneo='.$_GET['torneo'].'">Editar</a></li>
                             <li class="game game-spacer">&nbsp;</li>
-                            <li class="game game-bottom">Jugador 3</li>';
+                            <li class="game game-bottom"><a href="fichaJugadorvista.php?id='.$partidos->getJugadorB().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorB().'</a></li>';
+                        }  
                     }
                     ?>
                     <li class="spacer">&nbsp;</li>
                 </ul>
                 <ul class="round ronda3">
-                    <li class="spacer">&nbsp;</li>
-                    <li class="game game-top">Jugadro1</li>
-                    <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">Jugador5</li>
-                    <li class="spacer">&nbsp;</li>
+                    <?php
+                        foreach($datosPartidos as $partidos){
+                            if($partidos->getRondaTorneo()!="null"&&$partidos->getRondaTorneo()=="final"){
+                                echo '<li class="spacer">&nbsp;</li>
+                                <li class="game game-top">'.$partidos->getNombreJugadorA().'</li>
+                                <li class="game game-spacer">&nbsp;</li>
+                                <li class="game game-bottom ">'.$partidos->getNombreJugadorB().'</li>
+                                <li class="spacer">&nbsp;</li>';
+                            }else{
+                                echo '<li class="spacer">&nbsp;</li>
+                                <li class="game game-top">Ganador semi 1</li>
+                                <li class="game game-spacer">&nbsp;</li>
+                                <li class="game game-bottom ">Ganador semi 2</li>
+                                <li class="spacer">&nbsp;</li>';
+                                break;
+                            }
+                        }
+                    ?>
+                    
                 </ul>   
                 <ul class="round">
                     <li class="game game-top winner">Ganador</li>

@@ -1,5 +1,9 @@
 <?php
-    require("../infraestructura/partidoAccesoDatos.php");
+
+    ini_set('display_errors', 1);
+    ini_set('html_errors', 1);
+
+    require_once("../infraestructura/partidoAccesoDatos.php");
 
     class PartidoReglasNegocio{
 
@@ -63,5 +67,10 @@
                 array_push($listadoPartidos,$partidoReglasNegocio);
             }
             return $listadoPartidos;
+        }
+
+        function insertar($id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo){
+            $partidoDAL=new PartidoAccesoDatos();
+            $partidoDAL->insertar($id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo);
         }
     }

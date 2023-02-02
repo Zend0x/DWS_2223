@@ -9,12 +9,20 @@
 </head>
 <body>
     <?php
+        require("../negocio/partidoReglasNegocio.php");
         session_start(); // reanudamos la sesión
         if (!isset($_SESSION['username']))
         {
             header("Location: loginVista.php");
         }else if($_SESSION['userType']!="admin"){
             header("Location: cuadroVista.php");
+        }
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            echo "hola";
+            $partidoBL=new PartidoReglasNegocio();
+            $partidoBL->insertar($_POST['id_torneo'],$_POST['jugadorA'],$_POST['jugadorB'],$_POST['rondaTorneo']);
+
+            header("Location: torneosVistaAdmin.php");
         }
     ?>
     <div class="contenedor">
@@ -27,24 +35,42 @@
                         ini_set('display_errors', 1);
                         ini_set('html_errors', 1);
 
-                        require("../negocio/partidoReglasNegocio.php");
-                        $partidoBL = new PartidoReglasNegocio();
+                        if(isset($_GET['torneo'])){
+                            $partidoBL = new PartidoReglasNegocio();
+                            $datosPartidos=$partidoBL->obtener($_GET['torneo']);
+                        }else{
+                            $partidoBL=new PartidoReglasNegocio();
+                            $datosPartidos=$partidoBL->obtener($_POST['id_torneo']);
+                        }
                     ?>
                     <a href="logout.php"> Cerrar sesión </a><br>
                 </div>
             </div>
             <div class="formularioPartido">
                 <form action="crearPartidoVista.php" method="post">
-                    <label for="rondaPartido">Ronda</label><br>
-                    <select name="rondaPartido" id="rondaPartido">
+                    <label for="rondaTorneo">Ronda</label><br>
+                    <select name="rondaTorneo" id="rondaTorneo">
                         <option value="cuartos">Cuartos</option>
                         <option value="semis">Semifinal</option>
                         <option value="final">Final</option>
                     </select><br>
                     <label for="jugadorA">Jugador A</label><br>
-                    <input type="text" name="jugadorA" id="jugadorA"><br>
+                    <select name="jugadorA" id="jugadorA">
+                        <?php
+                            foreach ($datosPartidos as $partido) {
+                                echo "<option value=".$partido->getJugadorA().">".$partido->getNombreJugadorA()."</option>";
+                            }
+                        ?>
+                    </select><br>
                     <label for="jugadorB">Jugador B</label><br>
-                    <input type="text" name="jugadorB" id="jugadorB"><br>
+                    <select name="jugadorB" id="jugadorB">
+                        <?php
+                            foreach ($datosPartidos as $partido) {
+                                echo "<option value=".$partido->getJugadorB().">".$partido->getNombreJugadorB()."</option>";
+                            }
+                        ?>
+                    </select><br>
+                    <input type="hidden" name="id_torneo" value=<?php echo $_GET['torneo']?>>
                     <button type="submit">Enviar</button>
                 </form>
             </div>

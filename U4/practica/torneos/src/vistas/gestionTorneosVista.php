@@ -37,7 +37,7 @@
             </div>
         </div>
         <table class="tablaTorneos">
-            <caption id="crearPartido"><a id="crearPartido" href="crearPartidoVista.php">Crear partido</a></caption>
+            <caption id="crearPartido"><a id="crearPartido" href="crearPartidoVista.php?torneo=<?php echo $_GET['torneo']?>">Crear partido</a></caption>
             <tr>
                 <th>ID</th>
                 <th>Jugador A</th>
