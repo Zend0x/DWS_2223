@@ -14,6 +14,8 @@
         if (!isset($_SESSION['username']))
         {
             header("Location: loginVista.php");
+        }else if($_SESSION['userType']!="admin"){
+            header("Location: cuadroVista.php");
         }
     ?>
     <div class="contenedor"> 

@@ -91,6 +91,8 @@ DELETE FROM T_torneos WHERE true;
 
 DELETE FROM T_torneos WHERE true;
 SELECT * from T_torneos;
+
+SELECT * from T_partidos;
 /*
 SELECT id_partido, id_jugadorA, id_jugadorB, IFNULL(id_ganador,' ') as id_ganador, 
 (SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_jugadorA) as 'nombreJugadorA',

@@ -10,12 +10,14 @@
         if (!isset($_SESSION['username']))
         {
             header("Location: loginVista.php");
+        }else if($_SESSION['userType']!="usuario"){
+            header("Location: torneosVistaUsuarioAdmin.php");
         }
     ?>
 
     <div class="contenedorGeneral">
         <div class="topPage">
-            <h1 id="textoPrincipal">Listado de torneos (player ver)</h1>
+            <h2 id="textoPrincipal">Listado de torneos para administradores</h2>
             <div class="welcome">
                 <?php 
                     echo "Bienvenido, ".$_SESSION['username']; 
@@ -45,11 +47,9 @@
                 {
                     echo "<tr>";
                     echo "<td id='columnaID'>".$torneo->getID()."</td>";
-                    echo "<td id='nombreTorneo'><a id='textoNombre' href='cuadroVista.php?torneo=".$torneo->getID()."'>".$torneo->getNombre()."</a></td>";
+                    echo "<td id='nombreTorneo'><a id='textoNombre' href='cuadroVistaAdmin.php?torneo=".$torneo->getID()."'>".$torneo->getNombre()."</a></td>";
                     echo "<td id='columnaFecha'>".$torneo->getFecha()."</td>";
                     echo "<td id='columnaGanador'>".ucfirst($torneo->getGanador())."</td>";
-                    echo "<td><a href='editarTorneosVista.php'>Editar</a></td>";
-                    echo "<td><a href='borrarTorneo.php?torneo=".$torneo->getID()."'>Borrar</a></td>";
                     echo "</tr>";
                 }
             ?>

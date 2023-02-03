@@ -12,12 +12,14 @@
             header("Location: loginVista.php");
         }else if($_SESSION['userType']!="admin"){
             header("Location: torneosVistaUsuario.php");
+        }else if($_SESSION['userType']!="admin"){
+            header("Location: cuadroVista.php");
         }
     ?>
 
     <div class="contenedorGeneral">
         <div class="topPage">
-            <h1 id="textoPrincipal">Listado de torneos (admin ver)</h1>
+            <h2 id="textoPrincipal">Listado de torneos para administradores</h2>
             <div class="welcome">
                 <?php 
                     echo "Bienvenido, ".$_SESSION['username']; 

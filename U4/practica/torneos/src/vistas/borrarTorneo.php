@@ -9,5 +9,7 @@
         $torneoBL->borrar($id_torneo);
 
         header("Location: torneosVistaAdmin.php");
+    }else{
+        header("Location: torneosVistaAdmin.php");
     }
 ?>
