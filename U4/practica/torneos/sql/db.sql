@@ -77,8 +77,8 @@ SELECT id_partido, id_jugadorA, id_jugadorB, IFNULL(id_ganador,' ') AS id_ganado
         ORDER BY FIELD(rondatorneo, 'cuartos','semis','final');
         
 SELECT id_torneo, nombre,fecha,localizacion,
-(SELECT id_ganador, (SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_ganador) 
-FROM T_partidos WHERE T_partidos.rondaTorneo="final") as ganadorTorneo 
+(SELECT id_ganador FROM T_partidos WHERE T_partidos.rondaTorneo="final") as id_ganador,
+(SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_ganador) as 'nombreJugador' 
 FROM T_torneos 
 GROUP BY id_torneo;
 
