@@ -54,5 +54,10 @@ class TorneosReglasNegocio
         }
         return $listaTorneos;
     }
+
+    function borrar($id_torneo){
+        $torneosDAL=new TorneosAccesoDatos();
+        $torneosDAL->borrar($id_torneo);
+    }
 }
 

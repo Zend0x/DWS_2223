@@ -50,7 +50,7 @@
                     echo "<td id='nombreTorneo'><a id='textoNombre' href='cuadroVistaAdmin.php?torneo=".$torneo->getID()."'>".$torneo->getNombre()."</a></td>";
                     echo "<td id='columnaFecha'>".$torneo->getFecha()."</td>";
                     echo "<td id='columnaGanador'>".ucfirst($torneo->getGanador())."</td>";
-                    echo "<td><a href='editarTorneosVista.php'>Editar</a></td>";
+                    echo "<td><a href='gestionTorneosVista.php?torneo=".$torneo->getID()."'>Editar</a></td>";
                     echo "<td><a href='borrarTorneo.php?torneo=".$torneo->getID()."'>Borrar</a></td>";
                     echo "</tr>";
                 }

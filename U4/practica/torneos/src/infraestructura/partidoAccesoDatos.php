@@ -33,6 +33,18 @@ class PartidoAccesoDatos{
         }
 		return $partidos;
 	}
+	function borrar($id_partido){
+		$conexion = mysqli_connect('localhost','root','12345');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		mysqli_select_db($conexion, 'torneosTenisMesaDB');
+		$query="DELETE FROM T_partidos WHERE T_partidos.id_partido='".$id_partido."';";
+		$consulta = mysqli_prepare($conexion, $query);
+        $consulta->execute();
+        $result = $consulta->get_result();
+	}
 	function insertar($id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo){
 		var_dump($id_torneo);
 		$conexion = mysqli_connect('localhost','root','12345');
@@ -42,13 +54,13 @@ class PartidoAccesoDatos{
 		}
 
         mysqli_select_db($conexion, 'torneosTenisMesaDB');
-		$consulta = mysqli_prepare($conexion, "insert into T_partidos(id_partido,id_torneo,id_jugadorA,id_jugadorB,rondaTorneo) values (?,?,?,?,?);");
-        $consulta->bind_param("iiiis",$proximoPartido,$id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo);
+		$consulta = mysqli_prepare($conexion, "insert into T_partidos(id_torneo,id_jugadorA,id_jugadorB,rondaTorneo) values (?,?,?,?);");
+        $consulta->bind_param("iiis",$id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo);
         $res = $consulta->execute();
         
 		return $res;
 	}
-	function actualizarPartido($id_partido){
+	function actualizarPartido($id_partido,$id_ganador){
 		$conexion = mysqli_connect('localhost','root','12345');
 		if (mysqli_connect_errno())
 		{

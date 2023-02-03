@@ -73,4 +73,14 @@
             $partidoDAL=new PartidoAccesoDatos();
             $partidoDAL->insertar($id_torneo,$id_jugadorA,$id_jugadorB,$rondaTorneo);
         }
+
+        function borrar($id_partido){
+            $partidoDAL=new PartidoAccesoDatos();
+            $partidoDAL->borrar($id_partido);
+        }
+
+        function actualizarPartido($id_partido,$ganador){
+            $partidoDAL=new PartidoAccesoDatos();
+            $partidoDAL->actualizarPartido($id_partido,$ganador);
+        }
     }
