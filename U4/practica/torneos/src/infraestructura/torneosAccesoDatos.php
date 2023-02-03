@@ -76,7 +76,7 @@ class TorneosAccesoDatos
         mysqli_select_db($conexion, 'torneosTenisMesaDB');
 		$consulta2=mysqli_prepare($conexion,"DELETE FROM T_partidos WHERE T_partidos.id_torneo=(?)");
 		$consulta2->bind_param("i",$id_torneo);
-		$res2=$consulta2->execute();
+		$consulta2->execute();
 		$consulta = mysqli_prepare($conexion, "DELETE FROM T_torneos WHERE T_torneos.id_torneo=(?);");
         $consulta->bind_param("i", $id_torneo);
         $res = $consulta->execute();

@@ -19,7 +19,8 @@
     <div class="contenedor"> 
         <div class="topPage">
             <h1 id="textoPrincipal">Cuadro del torneo <?php echo $_GET['torneo'] ?></h1>
-            <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a>
+            <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a><br>
+            <a href="gestionTorneosVista.php?torneo=<?php echo $_GET['torneo'] ?>" class="centrado">Editar torneo</a>
             <div class="welcome">
                 <?php 
                     echo "Bienvenido, ".$_SESSION['username']; 
@@ -40,7 +41,7 @@
                         foreach($datosPartidos as $partidos){
                             if($partidos->getRondaTorneo()=="cuartos"){
                                 echo '<li class="spacer">&nbsp;</li>        
-                                <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$partidos->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorA().'</a><a class="botonEditar" href="gestionTorneosVista.php?partido='.$partidos->getID().'&torneo='.$_GET['torneo'].'">Editar</a></li>
+                                <li class="game game-top"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$partidos->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorA().'</a><a class="botonEditar" href="gestionTorneosVista.php?torneo='.$_GET['torneo'].'">Editar</a></li>
                                 <li class="game game-spacer">&nbsp;</li>
                                 <li class="game game-bottom"><a class="nombreJugador" href="fichaJugadorVista.php?id='.$partidos->getJugadorB().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorB().'</a></li>';
                             } 
@@ -53,10 +54,10 @@
                     foreach($datosPartidos as $partidos){
                         if($partidos->getRondaTorneo()!="null"&&$partidos->getRondaTorneo()=="semis"){
                             echo '<li class="spacer">&nbsp;</li>
-                            <li class="game game-top"><a href="fichaJugadorVista.php?id='.$partidos->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorA().'<a class="botonEditar" href="gestionTorneosVista.php?partido='.$partidos->getID().'&torneo='.$_GET['torneo'].'">Editar</a></li>
+                            <li class="game game-top"><a href="fichaJugadorVista.php?id='.$partidos->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorA().'<a class="botonEditar" href="gestionTorneosVista.php?torneo='.$_GET['torneo'].'">Editar</a></li>
                             <li class="game game-spacer">&nbsp;</li>
                             <li class="game game-bottom"><a href="fichaJugadorvista.php?id='.$partidos->getJugadorB().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorB().'</a></li>';
-                        }  
+                        }
                     }
                     ?>
                     <li class="spacer">&nbsp;</li>
@@ -77,7 +78,13 @@
                     
                 </ul>   
                 <ul class="round">
-                    <li class="game game-top winner">Ganador</li>
+                    <?php
+                        foreach($datosPartidos as $partidos){
+                            if($partidos->getRondaTorneo()=="final"&&null!==($partidos->getGanador())){
+                                echo '<li class="game game-top winner">'.$partidos->getGanador().'</li>';
+                            }
+                        }
+                    ?>
                 </ul> 
             </main>
         </div>

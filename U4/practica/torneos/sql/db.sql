@@ -24,7 +24,7 @@ CREATE TABLE T_torneos(
 );
 
 CREATE TABLE T_partidos(
-	id_partido int(6),
+	id_partido int(6) auto_increment,
     id_torneo int(5),
     id_jugadorA int(6),
     id_jugadorB int(6),
@@ -78,6 +78,7 @@ SELECT id_partido, id_jugadorA, id_jugadorB, IFNULL(id_ganador,' ') as id_ganado
 */
 DELETE FROM T_partidos WHERE true;
 DELETE FROM T_torneos WHERE true;
+SELECT * from T_partidos;
 /*
 SELECT id_partido, id_jugadorA, id_jugadorB, IFNULL(id_ganador,' ') as id_ganador, 
 (SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_jugadorA) as 'nombreJugadorA',

@@ -22,7 +22,7 @@
             $partidoBL=new PartidoReglasNegocio();
             $partidoBL->insertar($_POST['id_torneo'],$_POST['jugadorA'],$_POST['jugadorB'],$_POST['rondaTorneo']);
 
-            header("Location: torneosVistaAdmin.php");
+            header("Location: cuadroVistaAdmin.php?torneo=".$_POST['torneo']);
         }
     ?>
     <div class="contenedor">
@@ -47,7 +47,13 @@
                 </div>
             </div>
             <div class="formularioPartido">
-                <form action="crearPartidoVista.php" method="post">
+                <?php 
+                    if(isset($_GET['torneo'])){
+                        echo '<form action="crearPartidoVista.php?torneo='.$_GET["torneo"].'" method="post">';
+                    }else{
+                        echo '<form action="crearPartidoVista.php?torneo='.$_POST['id_torneo'].'" method="post">';
+                    }
+                ?>
                     <label for="rondaTorneo">Ronda</label><br>
                     <select name="rondaTorneo" id="rondaTorneo">
                         <option value="cuartos">Cuartos</option>
@@ -59,6 +65,7 @@
                         <?php
                             foreach ($datosPartidos as $partido) {
                                 echo "<option value=".$partido->getJugadorA().">".$partido->getNombreJugadorA()."</option>";
+                                echo "<option value=".$partido->getJugadorB().">".$partido->getNombreJugadorB()."</option>";
                             }
                         ?>
                     </select><br>
@@ -66,6 +73,7 @@
                     <select name="jugadorB" id="jugadorB">
                         <?php
                             foreach ($datosPartidos as $partido) {
+                                echo "<option value=".$partido->getJugadorA().">".$partido->getNombreJugadorA()."</option>";
                                 echo "<option value=".$partido->getJugadorB().">".$partido->getNombreJugadorB()."</option>";
                             }
                         ?>

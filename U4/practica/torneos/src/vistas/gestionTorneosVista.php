@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/gestionTorneos.css">
-    <title>Editar partido</title>
+    <title>Editar partidos</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
     ?>
     <div class="contenedor">
         <div class="topPage">
-            <h1 id="textoPrincipal">Edición del partido <?php echo $_GET['partido'] ?></h1>
+            <h1 id="textoPrincipal">Edición del torneo</h1>
             <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a>
             <div class="welcome">
                 <?php
@@ -55,8 +55,8 @@
                         echo "<td id='nombreJugadorB'>".$partido->getNombreJugadorB()."</td>";
                         echo "<td id='rondaTorneo'>".ucfirst($partido->getRondaTorneo())."</td>";
                         echo "<td id='ganadorPartido'>".$partido->getNombreGanador();"</td>";
-                        echo "<td id='editar'><a href='editarTorneosVista.php'>Editar</a></td>";
-                        echo "<td id='borrar'><a href='borrarTorneo.php?torneo=".$partido->getID()."'>Borrar</a></td>";
+                        echo "<td id='editar'><a href='editarPartidoVista.php?partido=".$partido->getID()."&torneo=".$_GET['torneo']."'>Editar</a></td>";
+                        echo "<td id='borrar'><a href='borrarPartido.php?partido=".$partido->getID()."&torneo=".$_GET['torneo']."'>Borrar</a></td>";
                     echo "</tr>";
                 }
             ?>
