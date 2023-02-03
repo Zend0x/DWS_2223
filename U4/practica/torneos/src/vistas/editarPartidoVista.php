@@ -33,7 +33,6 @@
                         
                         if($_SERVER['REQUEST_METHOD']=='POST'){
                             $partidoBL->actualizarPartido($_POST['id_partido'],$_POST['ganador']);
-
                             header("Location: gestionTorneosVista.php?torneo=".$_POST['id_torneo']);
                         }
                     ?>

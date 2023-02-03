@@ -15,7 +15,7 @@
             header("Location: loginVista.php");
         }
         if($_SERVER['REQUEST_METHOD']=='POST'){
-            $torneoDA=new TorneosAccesoDatos();
+            $torneoDA=new TorneosReglasNegocio();
             $torneoDA->insertar($_POST['nombreTorneo'],$_POST['fechaTorneo'],$_POST['ganador']);
 
             header("Location: torneosVistaAdmin.php");

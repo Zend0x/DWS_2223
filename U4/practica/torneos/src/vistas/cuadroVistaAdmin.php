@@ -20,7 +20,7 @@
         <div class="topPage">
             <h1 id="textoPrincipal">Cuadro del torneo <?php echo $_GET['torneo'] ?></h1>
             <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a><br>
-            <a href="gestionTorneosVista.php?torneo=<?php echo $_GET['torneo'] ?>" class="centrado">Editar torneo</a>
+            <a href="gestionTorneosVista.php?torneo=<?php echo $_GET['torneo'] ?>" class="centradoAbajo">Editar torneo</a>
             <div class="welcome">
                 <?php 
                     echo "Bienvenido, ".$_SESSION['username']; 
@@ -52,11 +52,16 @@
                 <ul class="round ronda2">
                     <?php 
                     foreach($datosPartidos as $partidos){
-                        if($partidos->getRondaTorneo()!="null"&&$partidos->getRondaTorneo()=="semis"){
+                        if($partidos->getRondaTorneo()=="semis"&&$partidos->getJugadorA()!="null"){
                             echo '<li class="spacer">&nbsp;</li>
                             <li class="game game-top"><a href="fichaJugadorVista.php?id='.$partidos->getJugadorA().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorA().'<a class="botonEditar" href="gestionTorneosVista.php?torneo='.$_GET['torneo'].'">Editar</a></li>
                             <li class="game game-spacer">&nbsp;</li>
                             <li class="game game-bottom"><a href="fichaJugadorvista.php?id='.$partidos->getJugadorB().'&torneo='.$_GET['torneo'].'">'.$partidos->getNombreJugadorB().'</a></li>';
+                        }else if($partidos->getJugadorA()=="null"||$partidos->getJugadorB()=="null"){
+                            echo '<li class="spacer">&nbsp;</li>
+                            <li class="game game-top">Ganador 1</li>
+                            <li class="game game-spacer">&nbsp;</li>
+                            <li class="game game-bottom">Ganador 2</li>';
                         }
                     }
                     ?>
@@ -66,7 +71,7 @@
                     <?php
                     //ToDo cambiar el bracket + revisar condiciones de imprimir de la DB o hardcodeado
                         foreach($datosPartidos as $partidos){
-                            if($partidos->getRondaTorneo()!="null"&&$partidos->getRondaTorneo()=="final"){
+                            if($partidos->getRondaTorneo()=="final"){
                                 echo '<li class="spacer">&nbsp;</li>
                                 <li class="game game-top">'.$partidos->getNombreJugadorA().'</li>
                                 <li class="game game-spacer">&nbsp;</li>
@@ -81,7 +86,7 @@
                     <?php
                         foreach($datosPartidos as $partidos){
                             if($partidos->getRondaTorneo()=="final"&&null!==($partidos->getGanador())){
-                                echo '<li class="game game-top winner">'.$partidos->getGanador().'</li>';
+                                echo '<li class="game game-top winner">'.$partidos->getNombreGanador().'</li>';
                             }
                         }
                     ?>

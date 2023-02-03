@@ -19,7 +19,8 @@ class PartidoAccesoDatos{
 		(SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_jugadorB) AS 'nombreJugadorB',
 		(SELECT CONCAT_WS(' ',nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_ganador) AS 'nombreGanador'
 		FROM T_partidos 
-		WHERE T_partidos.id_torneo='".$id_torneo."';";
+		WHERE T_partidos.id_torneo='".$id_torneo."'
+		ORDER BY FIELD(rondatorneo, 'cuartos','semis','final');";
 		$consulta = mysqli_prepare($conexion, $query);
         $consulta->execute();
         $result = $consulta->get_result();

@@ -22,7 +22,8 @@
     <div class="contenedor">
         <div class="topPage">
             <h1 id="textoPrincipal">Edición del torneo</h1>
-            <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a>
+            <a class="centrado" href="torneosVistaAdmin.php">Volver al inicio</a><br>
+            <a href="cuadroVistaAdmin.php?torneo=<?php echo$_GET['torneo']?>" class="centrado">Volver al cuadro</a>
             <div class="welcome">
                 <?php
                     echo "Bienvenido, " . $_SESSION['username'];

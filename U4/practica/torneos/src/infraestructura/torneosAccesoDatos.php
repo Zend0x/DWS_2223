@@ -14,7 +14,10 @@ class TorneosAccesoDatos
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
  		mysqli_select_db($conexion, 'torneosTenisMesaDB');
-		$consulta = mysqli_prepare($conexion, "SELECT id_torneo, nombre,fecha,localizacion,ganador FROM T_torneos GROUP BY id_torneo");
+		$consulta = mysqli_prepare($conexion, 'SELECT id_torneo, nombre,fecha,localizacion, 
+		(SELECT id_ganador FROM T_partidos WHERE T_partidos.rondaTorneo="final") as id_ganador, 
+		(SELECT CONCAT_WS(" ",nombre,apellidos) FROM T_jugadores WHERE T_jugadores.id_jugador=id_ganador) as "nombreGanador" 
+		FROM T_torneos GROUP BY id_torneo;');
         $consulta->execute();
         $result = $consulta->get_result();
 

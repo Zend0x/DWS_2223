@@ -48,11 +48,16 @@ class TorneosReglasNegocio
         foreach ($rs as $torneo)
         {
             $oTorneosReglasNegocio = new TorneosReglasNegocio();
-            $oTorneosReglasNegocio->Init($torneo['id_torneo'],$torneo['nombre'],$torneo['fecha'],$torneo['localizacion'],$torneo['ganador']);
+            $oTorneosReglasNegocio->Init($torneo['id_torneo'],$torneo['nombre'],$torneo['fecha'],$torneo['localizacion'],$torneo['nombreGanador']);
             array_push($listaTorneos,$oTorneosReglasNegocio);
          
         }
         return $listaTorneos;
+    }
+
+    function insertar($nombreTorneo,$fechaTorneo,$ganador){
+        $oTorneoAccesoDatos=new TorneosAccesoDatos();
+        $oTorneoAccesoDatos->insertar($nombreTorneo,$fechaTorneo,$ganador);
     }
 
     function borrar($id_torneo){

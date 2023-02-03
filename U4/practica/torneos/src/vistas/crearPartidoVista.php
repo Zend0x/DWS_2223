@@ -22,7 +22,7 @@
             $partidoBL=new PartidoReglasNegocio();
             $partidoBL->insertar($_POST['id_torneo'],$_POST['jugadorA'],$_POST['jugadorB'],$_POST['rondaTorneo']);
 
-            header("Location: cuadroVistaAdmin.php?torneo=".$_POST['torneo']);
+            header("Location: gestionTorneosVista.php?torneo=".$_POST['id_torneo']);
         }
     ?>
     <div class="contenedor">
@@ -56,7 +56,6 @@
                 ?>
                     <label for="rondaTorneo">Ronda</label><br>
                     <select name="rondaTorneo" id="rondaTorneo">
-                        <option value="cuartos">Cuartos</option>
                         <option value="semis">Semifinal</option>
                         <option value="final">Final</option>
                     </select><br>
@@ -79,7 +78,7 @@
                         ?>
                     </select><br>
                     <input type="hidden" name="id_torneo" value=<?php echo $_GET['torneo']?>>
-                    <button type="submit">Enviar</button>
+                    <button type="submit" value="submit">Enviar</button>
                 </form>
             </div>
     </div>
