@@ -14,7 +14,7 @@
         if (!isset($_SESSION['username']))
         {
             header("Location: loginVista.php");
-        }else if($_SESSION['userType']!="usuario"){
+        }else if($_SESSION['userType']!="player"){
             header("Location: cuadroVistaAdmin.php");
         }
     ?>

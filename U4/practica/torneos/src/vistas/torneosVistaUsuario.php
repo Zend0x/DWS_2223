@@ -10,8 +10,8 @@
         if (!isset($_SESSION['username']))
         {
             header("Location: loginVista.php");
-        }else if($_SESSION['userType']!="usuario"){
-            header("Location: torneosVistaUsuarioAdmin.php");
+        }else if($_SESSION['userType']!="player"){
+            header("Location: torneosVistaUsuario.php");
         }
     ?>
 

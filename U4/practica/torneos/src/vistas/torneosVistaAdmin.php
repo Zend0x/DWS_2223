@@ -53,7 +53,7 @@
                     echo "<td id='columnaFecha'>".$torneo->getFecha()."</td>";
                     echo "<td id='columnaGanador'>".ucfirst($torneo->getGanador())."</td>";
                     echo "<td><a href='gestionTorneosVista.php?torneo=".$torneo->getID()."'>Editar</a></td>";
-                    echo "<td><a href='borrarTorneo.php?torneo=".$torneo->getID()."'>Borrar</a></td>";
+                    echo "<td><a href='borrarTorneo.php?torneo=".$torneo->getID()." onClick=\"return confirm('Delete This account?')\">Borrar</a></td>";
                     echo "</tr>";
                 }
             ?>
