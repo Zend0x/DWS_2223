@@ -31,6 +31,22 @@ ini_set('html_errors', 1);
             return $direccionesIP;
         }
 
+        function validarDigito($digito){
+            $longitud = strlen($digito);
+            $result = true;
+            for ($i = 0; $i < $longitud; $i++)
+            {
+            // print($digito[$i]);
+                if ($digito[$i]!="0" && $digito[$i]!="1")
+                {
+                    $result = false;
+                    break;
+                }
+            }
+            return $result;
+
+        }
+
         function obtenerDireccionesIpBloquedas(){
             $ipDAL=new ipAccesoDatos();
             $result=$ipDAL->obtener();
@@ -48,6 +64,25 @@ ini_set('html_errors', 1);
         function insertar($direccionIP){
             $ipDAL=new ipAccesoDatos();
             $ipDAL->insertarIpValida($direccionIP);
+        }
+
+        function validarIP($ip){
+            $longitud = strlen($ip);
+            if ($longitud!=35)
+            {
+                return false;
+            }
+            $result = true;
+            $digitos = explode(".", $ip);
+            foreach ($digitos as $digito)
+            {
+                if (!$this->validarDigito($digito))
+                {
+                    $result = false;
+                    break;
+                }
+            }
+            return $result;
         }
 
         function convertirNumeroDecimalABinario($numero){
@@ -82,14 +117,30 @@ ini_set('html_errors', 1);
         }
 
         function limpiarIps(){
+            $ipDAL=new ipAccesoDatos();
+
             $ipsBL=new ipReglasNegocio();
             $direccionesIP=$ipsBL->obtener();
 
             $ipsBloqueadasBL=new ipReglasNegocio();
             $direccionesIPBloqueadas=$ipsBloqueadasBL->obtenerDireccionesIpBloquedas();
 
-            foreach($direccionesIPBloqueadas as $ipBloqueada){
-                
+            foreach($direccionesIP as $ip){
+                $ip_binaria=$ip['ip_binaria'];
+                if($this->validarIP($ip_binaria)){
+                    $ip_decimal=$this->convertIP($ip_binaria);
+                    
+                    $bloqueada=false;
+                    foreach($direccionesIPBloqueadas as $ip_bloqueada){
+                        if($ip_decimal==$ip_bloqueada['direccion_ip_decimal']){
+                            $bloqueada=true;
+                            break;
+                        }
+                    }
+                    if(!$bloqueada){
+                        $ipDAL->insertarIpValida($ip_decimal);
+                    }
+                }
             }
         }
     }
